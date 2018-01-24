@@ -1,0 +1,111 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%- include layouts/header.ejs %>
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2><strong>All</strong> Medications</h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">
+                <li class="active">View</li>
+                <!-- <li class="active">Dashboard</li> -->
+              </ol>
+            </div>
+          </div>
+          <!--  -->
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- HERE COMES YOUR CONTENT -->
+              <div class="panel">
+                <div class="panel-header">
+                  <h3><i class="icon-bulb"></i> <strong> Medications </strong>  Listings</h3>
+                </div>
+                <div class="panel-content pagination2 table-responsive">
+                  <table class="table dataTable" id="table2">
+                    <thead>
+                      <tr>
+                        <th class="no_sort" tabindex="0" rowspan="1" colspan="1" style="width: 1px;"></th>
+                        <th style="width: 55px !important;" class="sorting_asc">Sr No</th>
+                        <th>Medications Category</th>
+                         <!--  <th>Medications Display Name</th> -->
+                        <!-- <th>Medications Name</th>
+                        <th>action</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% 
+                        var keys=data.keys;
+                        if(data.keys.length>0){ 
+                        var j=0;
+                      %>
+                      <% 
+                        for(var i=0;i<20;i++){ 
+                        j=j+1; 
+                      %>
+                      <tr onclick="getSubCategory('<%=keys[i]%>');">
+                        <td class="center "></td>
+                        <td style="width: 55px !important;" class="sorting_1"><%- j %></td>
+                        <td><%- keys[i] %></td>
+                      </tr>
+                       <% } }%>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="panel">
+                <div class="panel-header">
+                  <h3><i class="icon-bulb"></i> <strong> Medication </strong>  Subcategory</h3>
+                </div>
+                <div class="panel-content pagination2 table-responsive">
+                  <table class="table dataTable" id="table3">
+                    <thead>
+                      <tr>
+                        <th>Sr.No</th>
+                        <th>Medication SubCategory</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbodyClass" > 
+                 
+                    </tbody>
+                  </table> 
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </div>
+      <!-- END MAIN CONTENT -->
+
+      <%- include layouts/js.ejs %>
+  </body>
+</html>
+
+<script type="text/javascript">
+function getSubCategory(inputKey) {
+  var output = '<%= data.result %>';
+  output=$('<div/>').html(output).text();
+  var subcategories=JSON.parse(output);
+  for(var cat in subcategories){
+     console.log("**"+cat + inputKey);
+    if(cat == inputKey){
+      jQuery('#tbodyClass').html('');
+      var rowTr = '';
+     for(let i =1; i <subcategories[cat].length;i++){
+       rowTr += "<tr><td>"+i+"</td><td>"+subcategories[cat][i].display_name+"</td><td>"+"<a data-rel='tooltip' data-placement='right' class='btn btn-sm btn-primary tooltipClass' href='each_medication_id/"+subcategories[cat][i]._id+"'><i class='fa fa-eye'></i></a></td></tr>";
+     }    
+     $('#tbodyClass').html(rowTr);
+    }
+  }
+  $(".tooltipClass").css('cursor','pointer').attr('title', 'Medication Info');
+}
+</script>
+<style type="text/css">
+  .page-content {
+    overflow: scroll !important;
+  }
+
+</style>

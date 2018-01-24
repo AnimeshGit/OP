@@ -1,0 +1,396 @@
+  <%- include layouts/header.ejs %>
+  <!-- BEGIN PAGE CONTENT -->
+  <div class="page-content">
+    <div class="header">
+      <h2>Add <strong>Doctors</strong></h2>
+      <div class="breadcrumb-wrapper">
+        <ol class="breadcrumb">             
+          <li><a href="#">Doctors</a>
+          </li>
+          <li class="active">Add Doctors</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">        
+      <div class="col-md-12">
+        <div class="panel panel-default no-bd">
+          <div class="panel-header bg-dark">
+            <h3 class="panel-title"><strong>Fill</strong> Necessary Details</h3>
+          </div>
+          <div class="panel-body bg-white">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <form role="form" class="form-validation" action="insert_doctors" method="post" enctype="multipart/form-data">
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label class="control-label">Doctors Name</label>
+                        <div class="append-icon">
+                          <input type="text" name="doctors_name" class="form-control" placeholder="Enter Name of Doctor.." required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="control-label">Doctors Image</label>
+                      <div class="file">
+                        <div class="option-group">
+                          <span class="file-button btn-primary">Choose File</span>
+                          <input type="file" accept="image/*" class="custom-file" name="doctors_image"  id="avatar" onchange="document.getElementById('uploader').value = this.value;">
+                          <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label class="control-label">Doctors Email</label>
+                        <div class="append-icon">
+                          <input type="email" name="doctors_email" class="form-control" placeholder="Enter Email.." required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label class="control-label">Doctors Password</label>
+                        <div class="append-icon">
+                          <input type="password" name="doctors_password" class="form-control" placeholder="universal password(12345)" readonly>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label class="control-label">Doctors Phone</label>
+                        <div class="append-icon">
+                          <input type="text" data-mask="9999999999" name="doctors_phone" class="form-control" placeholder="Enter only 10 digit phone number Here.." required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label">Doctors Date Of Birth</label>
+                      <div class="prepend-icon">
+                        <input type="text" name="doctors_DOB" id="doctors_DOB" class="b-datepicker form-control" placeholder="Select a date..." required>
+                        <i class="icon-calendar"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label class="control-label">Doctors Age</label>
+                          <input type="number" id="doctorAge" name="age" value="" class="form-control" readonly>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label class="control-label">Doctors Gender</label>
+                        <div class="option-group">
+                          <select id="gender" name="gender" class="" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Transgender male">Transgender Male</option>
+                            <option value="Transgender female">Transgender Female</option>
+                            <option value="Not to Disclose">Not to Disclose</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                       <label class="control-label">Doctors Region </label>
+                       <div class="option-group">
+                        <select id="region" name="region" class="" required>
+                          <option value="American">American</option>
+                          <option value="Austrelian">Austrelian</option>
+                          <option value="Indian">Indian</option>
+                          <option value="Indonesian">Indonesian</option>
+                          <option value="Shrilankan">Shrilankan</option>
+                          <option value="Aafrican">Aafrican</option>
+                          <option value="Chienese">Chienese</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Education </label>
+                              <div class="append-icon">
+                                <input type="text" name="doctors_education" class="form-control" placeholder="Enter Education of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Specialisation</label>
+                              <div class="option-group">
+                                <select name="doctor_specialization" required>
+                                  <option value="Internal Medicine">Internal Medicine</option>
+                                  <option value="Specialist (specified)">Specialist (specified)</option>
+                                  <option value="Pediatrician">Pediatrician</option>
+                                  <option value="Obstetrician/Gynecologist">Obstetrician/Gynecologist</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Location </label>
+                              <div class="append-icon">
+                                <input type="text" name="doctors_location" class="form-control" placeholder="Enter Location of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Fees </label>
+                              <div class="append-icon">
+                                <input type="number" name="doctors_fees" min="0" class="form-control" placeholder="Enter Fees of Doctor.." >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Working Hours </label>
+                                <div>
+                                  <div>
+                                    <label class="col-sm-1 control-label">From:</label>
+                                    <div class="col-sm-5">
+                                       <input type="text" style="margin-left:16px;" name="doctors_timing1" class="timepicker form-control" placeholder=" 00:00 am " required>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <label class="col-sm-1 control-label">To:</label>
+                                    <div class="col-sm-5">
+                                      <input type="text" name="doctors_timing2"  class="timepicker form-control" placeholder=" 00:00 pm" required>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                            
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Doctors Working Days</label>
+                                  <div class="input-group">
+                                    <div class="icheck-inline">
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Monday"> Monday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Tuesday"> Tuesday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Wednesday"> Wednesday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Thurday"> Thurday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Friday"> Friday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Saturday"> Saturday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Sunday"> Sunday</label>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                          </div>  
+
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">About Doctor</label>
+                                <div class="append-icon">
+                                  <textarea rows="5" class="form-control underlined" name="about_doctor"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">Doctors Address </label>
+                                <div class="append-icon">
+                                  <textarea rows="5" class="form-control underlined" name="doctors_address"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">NPI Number</label>
+                                <div class="append-icon">
+                                  <input type="text" name="npi_number" class="form-control" placeholder="Enter NPI Number of Doctor.." pattern="^[a-zA-Z0-9]+$" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">License Number</label>
+                                <div class="append-icon">
+                                  <input type="text" name="license_number" class="form-control" placeholder="Enter License Number of Doctor.." required>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">Total Practice Years</label>
+                                <div class="append-icon">
+                                  <input type="number" name="total_practice_years" min="0" class="form-control" placeholder="Enter total practice years of Doctor.." required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="form-group">
+                                <label class="control-label">Medical Board Certification</label>
+                                <div class="append-icon">
+                                  <input type="text" name="m_b_certification" id="m_b_certification1" class="form-control" placeholder="Please  fill before you click on Add Button" required>
+                                </div>
+                                <span id="clone_M_B_C"></span>
+
+                              </div>
+                            </div>
+                            <div class="col-sm-1" style="padding-left:0px;">
+                              <div class="form-group">
+                                <input type="hidden" name="ivalue" id="ivalue1" value="0">
+                                <button type="button" id="add_new_mbc" class="btn btn-embossed btn-primary" style="margin-top:24px;">Add</button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            
+                            <div class="col-sm-5">
+                              <div class="form-group">
+                                <label class="control-label">Work History</label>
+                                <div class="append-icon">
+                                  <input type="text" name="work_history" id="work_history1" class="form-control" placeholder="Please fill before you click on Add Button" required>
+                                </div>
+                                <span id="clone_work"></span>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-1" style="padding-left:0px;">
+                              <input type="hidden" name="ivalue" id="ivalue2" value="0">
+                              <button type="button" id="add_new_work" class="btn btn-embossed btn-primary" style="margin-top:25px;">Add</button>
+                            </div>
+
+                            <div class="col-sm-5">
+                              <div class="form-group">
+                                <label class="control-label">Awards Accolades</label>
+                                <div class="append-icon">
+                                  <input type="text" name="awards_accolades" id="awards_accolades1" class="form-control" placeholder="Please  fill before you click on Add Button" required>
+                                </div>
+                                <span id="clone_awards"></span>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-1" style="padding-left:0px;">
+                              <input type="hidden" name="ivalue" id="ivalue3" value="0">
+                              <button type="button" id="add_new_award" class="btn btn-embossed btn-primary" style="margin-top:25px;">Add</button>
+                            </div>
+
+                          </div>
+
+                          
+
+                          <div class="text-center  m-t-20">
+                            <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>    
+            <%- include layouts/footer.ejs %>
+          </div>
+          <!-- END PAGE CONTENT -->
+          <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> <!-- >Bootstrap Date Picker -->
+<script src="../assets/global/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+<script src="../assets/global/plugins/select2/select2.min.js"></script> <!-- Select Inputs -->
+
+<script type="text/javascript">
+$('document').ready(function () {
+    $('#doctorAge').val('')
+  })
+
+$('#doctors_DOB').datepicker({
+  // dateFormat: 'dd/mm/yy',
+  changeMonth: true,
+  changeYear: true,
+  yearRange: '1900:2150',
+  maxDate: -1,
+  inline: true,
+
+   onSelect: function() {
+      var birthDay = document.getElementById("doctors_DOB").value;
+      var DOB = new Date(birthDay);
+      var today = new Date();
+      var age = today.getTime() - DOB.getTime();
+      age = Math.floor(age / (1000 * 60 * 60 * 24 * 365.25));
+      console.log("here is an Age"+age);
+      document.getElementById('doctorAge').value = age;              
+  }
+});  
+</script>
+
+<script src="../assets/global/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
+<style type='text/css'  href='/stylesheets/timepicki.css'></style>
+
+<script src="../assets/global/plugins/icheck/icheck.min.js"></script> <!-- Checkbox & Radio Inputs -->
+<script type="text/javascript">
+$(document).ready(function(){
+  var i=2;
+
+  $("#add_new_mbc").click(function(){
+    var html='<div id="certificate_row'+i+'"><div class="col-sm-11" style="padding-left:0px;"><input type="text" name="m_b_certification" id="m_b_certification'+i+'" class="form-control" placeholder="Please  fill before you click on Add Button" required></div><div class="col-sm-1" style="padding:0px;"><a  title="" id="remove_m_b_c'+i+'" class="btn btn-sm btn-danger" style="display: block; height: 33px;width: 30px;padding: -43px !important;padding-top: 0px;"><i style="color:#fff;line-height:24px !important;" class="icons-office-52"></i></a></div></div>';
+    var m_b_c = $("#m_b_certification"+(i-1)).val();
+    if (m_b_c!='') {
+        $("#clone_M_B_C").append(html);
+      document.getElementById('ivalue1').value = i-1;
+        i++;
+    }
+  });
+
+  $("#add_new_work").click(function(){
+    var html='<div class="col-sm-11" style="padding-left:0px;"><input type="text" name="work_history" id="work_history'+i+'" class="form-control" placeholder="Please  fill before you click on Add Button" required></div><div class="col-sm-1" style="padding:0px;"><a  title="" class="btn btn-sm btn-danger" style="display: block; height: 33px;width: 30px;padding: -43px !important;padding-top: 0px;"><i style="color:#fff;line-height:24px !important;" class="icons-office-52"></i></a></div>';
+    var work_hist = $("#work_history"+(i-1)).val();
+    if (work_hist!='') {
+        $("#clone_work").append(html);
+      document.getElementById('ivalue2').value = i-1;
+        i++;
+    }
+  });
+  $("#add_new_award").click(function(){
+    var html='<div class="col-sm-11" style="padding-left:0px;"><input type="text" name="awards_accolades" id="awards_accolades'+i+'" class="form-control" placeholder="Please  fill before you click on Add Button" required></div><div class="col-sm-1" style="padding:0px;"><a  title="" class="btn btn-sm btn-danger" style="display: block; height: 33px;width: 30px;padding: -43px !important;padding-top: 0px;"><i style="color:#fff;line-height:24px !important;" class="icons-office-52"></i></a></div>';
+    var awards = $("#awards_accolades"+(i-1)).val();
+    if (awards!='') {
+        $("#clone_awards").append(html);
+      document.getElementById('ivalue3').value = i-1;
+        i++;
+    }
+  });
+});
+
+</script>

@@ -1,0 +1,244 @@
+  <%- include layouts/header.ejs %>         
+    <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content page-thin">
+          <div class="header">
+            <h2><strong>Dashboard</strong></h2>
+          </div>
+          <h3 class="m-t-30 m-b-10"><strong>Counters</strong></h3>
+          <!-- <p>Counters are bigger infobox with animated numbers.</p> -->
+          <div class="row m-t-10">
+            <div class="col-xlg-2 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="icon-user bg-green"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="<%= userCount%>"><%= userCount %></p>
+                      <p class="text">Patients</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xlg-2 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="fa fa-user-md bg-blue"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="<%= doctorCount%>"><%= doctorCount%></p>
+                      <p class="text">Doctors</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xlg-2 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="fa fa-fire-extinguisher bg-red"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="<%= caseCount %>"><%= caseCount %></p>
+                      <p class="text">Cases</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xlg-2 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="icon-note bg-purple"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="<%= blogCount%>"><%= blogCount%></p>
+                      <p class="text">Blogs</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+             <div class="col-md-6 portlets">
+              <div class="panel">
+                <div class="panel-header">
+                  <h3><i class="fa fa-table"></i> <strong>Latest</strong> Cases</h3>
+                  <div class="control-btn">
+                   
+                    <a href="#" class="panel-popout hidden tt" title="Pop Out/In"><i class="icons-office-58"></i></a>
+                    <a href="#" class="panel-maximize hidden"><i class="icon-size-fullscreen"></i></a>
+                    <a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>
+                  </div>
+                </div>
+                <div class="panel-content">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Case No</Th>
+                        <th>Patient Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                        <tbody>
+                    <% 
+                    var j=0;
+                    for(var i=0;i<caseData.length;i++)
+                    {
+                    j++;
+                    %>
+                      <tr>
+                        <td><%= j %></td>
+                        <td><%= caseData[i].caseNo %></td>
+                        <% if(caseData[i].userId.fullname=="undefined"&&caseData[i].userId.fullname=="null"&&caseData[i].userId.fullname==""){ %>
+                        <td>unknown</td>
+                        <%}else{%>
+                        <td><%= caseData[i].userId.fullname %></td>
+                        <%}%>              
+                        <td><%= caseData[i].createdAt.toDateString() %></td>
+                        <td><%= caseData[i].status %></td>
+                        <td><a data-rel="tooltip" data-placement="bottom" title="" data-original-title="Read More" class="btn btn-sm btn-primary" href="view_each_case/<%- caseData[i]._id %>"><i class="fa fa-eye"></i></a></td>
+                      </tr>                      
+                    <% } %> 
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div> 
+          <div class="col-md-6 portlets">
+              <div class="panel">
+                <div class="panel-header">
+                  <h3><i class="fa fa-table"></i> <strong>Latest</strong> Blogs</h3>
+                  <div class="control-btn">
+                    <a href="#" class="panel-maximize hidden"><i class="icon-size-fullscreen"></i></a>
+                    <a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>
+                  </div>
+                </div>
+                <div class="panel-content">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% 
+                    var j=0;
+                    for(var i=0;i<blogData.length;i++){ 
+                      j++;
+                      %>
+                      <tr>
+                        <td><%= j %></td>
+                        <td><%= blogData[i].title %></td>
+                        <td><%= blogData[i].createdAt.toDateString() %></td>
+                        <td><a data-rel="tooltip" data-placement="bottom" title="" data-original-title="Read More" class="btn btn-sm btn-primary" href="view_each_blog/<%= blogData[i]._id %>"><i class="fa fa-eye"></i></a></td>
+                      </tr>                      
+                    <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>       
+        </div> 
+         <div class="row">
+             <div class="col-md-6 portlets">
+              <div class="panel">
+                <div class="panel-header">
+                  <h3><i class="fa fa-table"></i> <strong>Latest</strong> Doctors</h3>
+                  <div class="control-btn">
+                    <a href="#" class="panel-maximize hidden"><i class="icon-size-fullscreen"></i></a>
+                    <a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>
+                  </div>
+                </div>
+                <div class="panel-content">
+                    <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% 
+                    var j=0;
+                    for(var i=0;i<doctorData.length;i++){
+                    j++;
+                    %>
+                      <tr>
+                        <td><%= j %></td>
+                        <td><%= doctorData[i].fullname %></td>
+                        <td><%= doctorData[i].email %></td>
+                        <td><%= doctorData[i].phoneNumber %></td>
+                      </tr>                      
+                    <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div> 
+          <div class="col-md-6 portlets">
+              <div class="panel">
+                <div class="panel-header">
+                  <h3><i class="fa fa-table"></i> <strong>Latest</strong> Patients</h3>
+                  <div class="control-btn">
+                    <a href="#" class="panel-maximize hidden"><i class="icon-size-fullscreen"></i></a>
+                    <a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>
+                  </div>
+                </div>
+                <div class="panel-content">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% 
+                    var j=0;
+                    for(var i=0;i<patientData.length;i++){ 
+                      j++;
+                      %>
+                      <tr>
+                         <td><%= j %></td>
+                        <td><%= patientData[i].fullname %></td>
+                        <td><%= patientData[i].email %></td>
+                        <td><%= patientData[i].phoneNumber %></td>
+                      </tr>                      
+                    <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>       
+        </div> 
+      <div>  
+    <!-- include content here -->
+    </div>
+    <!-- include footer -->
+    <%- include layouts/footer.ejs %> 
+    </div>
+    <!-- END PAGE CONTENT -->
+    </div>
+    <!-- END MAIN CONTENT -->   
+     </section> 
+<%- include layouts/js.ejs %> 

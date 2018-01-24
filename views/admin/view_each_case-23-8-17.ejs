@@ -1,0 +1,180 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>View <strong>Cases</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Cases</a>
+                </li>
+                <li class="active">View Cases</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-6">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Perticular Case Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            
+                            <div class="form-group">
+                              <label class="control-label">Case No</label>
+                              <div>
+                                <%- data.caseNo %>  
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Patient Name</label>
+                              <div class="append-icon">
+                              <% if(data.isAnonymous==false){%>
+                                      <%- data.userId.fullname %>
+                                <% }else{%>
+                                      Anonymous
+                                <%}%>
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Primery Diagnosis Name</label>
+                              <div class="append-icon">
+                                <%- data.primeryDiagnosisName %>
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Cases Status</label>
+                              <div class="append-icon">
+                                <%- data.status %>  
+                              </div>
+                            </div>
+                            
+
+                            <div class="form-group">
+                              <label class="control-label">Anonymous Case</label>
+                              <div class="append-icon">
+                                <% if(data.isAnonymous==false){ %>
+                                <div>NO</div>
+                                <%}else{%>
+                                <div>YES</div>
+                                <%}%>  
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Problem Description</label>
+                              <div class="append-icon">
+                                <%- data.diagnosisDescription %>
+                                  
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Document share</label>
+                              <div class="append-icon">
+                                <% if(data.documents.length>0){ %>
+                                <div>
+                                <% 
+                                for(var i=0; i<=data.documents.length; i++){
+                                 %>
+                                <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>userDocuments/<%- data.documents[i] %>" height="50" width="50" >
+                            
+                                <%}%>
+                                </div>
+                                 <%}else{%>
+                                <div>Documents Not Yet Uploaded</div>
+                                 <%}%>
+                               </div>
+                            </div>
+                            
+                          
+                          </div>
+                            
+                          
+                        
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title">Case Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            
+                            <div class="form-group">
+                              <label class="control-label">Case No</label>
+                              <div>
+                                <%# data.caseNo %>  
+                              </div>
+                            </div>
+                            
+                            
+                          
+                          </div>
+                        
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+
+<body style="margin:0;">
+  <!--javascript files-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+  <script src="//static-v2.crocodoc.com/core/docviewer.js"></script>
+  <!-- <script src="//crocodoc.com/webservice/document.js?session=bqmOfT3hC4JCS9iKA4Ok25IZlKM-9uOU70epOHljAjox0uR4IrCCYx2paNCtw-B7c9t0ND942FKBtOBqEshsy8ZRDjqN54tTUDI11Q"></script> -->
+
+  <!--custom CSS-->
+  <style type="text/css">
+    #DocViewer .doc { background:white; overflow:hidden; } /*hide scrollbars*/
+    button.prev { position:absolute; top:50%; left:200px; margin-top:-15px; font-size:20px; }
+    button.next { position:absolute; top:50%; right:200px; margin-top:-15px; font-size:20px; }
+  </style>
+
+  <!--document viewer-->
+  <div id="DocViewer"></div>
+
+  <!--buttons-->
+  <button class="next">▶</button>
+  <button class="prev">◀</button>
+
+  <script type="text/javascript">
+    //initialize docviewer
+    var docViewer = new DocViewer({
+      "id": "DocViewer",
+      "zoom": "fitHeight" //set initial zoom
+    });
+
+    //button events
+    $('.prev').click(function() {
+        docViewer.scrollTo("prev");
+    });
+
+    $('.next').click(function() {
+        docViewer.scrollTo("next");
+    });
+
+  </script>
+</body>

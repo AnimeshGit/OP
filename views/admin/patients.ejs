@@ -1,0 +1,132 @@
+<%- include layouts/header.ejs %>
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <!-- <div class="header">
+            <h2> All<strong> Patients</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">
+                <li><Users</a></li>
+                <li class="active">Patients</li>
+              </ol>
+            </div>
+          </div>
+           -->
+          <div class="header">
+            <h2> All<strong> Patients</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">
+                <li><a href="#">Users</a>
+                </li>
+                 <li class="active"><a href="#">Patients</a>
+                </li>
+              </ol>
+            </div>
+          </div> 
+          
+          <div class="row">
+            <div class="col-md-12">
+              
+              <% if (error.length > 0) { %>
+                  <div class="alert media fade in alert-danger"><%= error %></div>
+              <% }else if (success.length > 0) { %>
+                <div class="alert media fade in alert-success"><%= success %></div>
+              <% } %>
+
+              <div class="panel">
+
+                <div class="panel-header">
+                  <h3><i class="icon-bulb"></i> <strong> Patients</strong>  Listing</h3>
+                </div>
+                
+                <div class="panel-content pagination2 table-responsive">
+                  <table class="table dataTable" id="table2">
+                    <thead>
+                      <tr>
+                        <th class="no_sort" tabindex="0" rowspan="1" colspan="1" style="width: 42px;"></th>
+                        <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" style="width: 100px;">
+                          Sr No
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 250px;text-align:center;">
+                          Patient Name
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 150px;text-align:center;">
+                          Patient Email
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 200px;text-align:center;">
+                          Patient Image
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 171px;text-align:center;">
+                          action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <%
+                      var j=0;
+                      for(var i=0; i < data.length; i++) { 
+                      j=j+1;
+                    %>
+                      <tr class="gradeA odd">
+                        <td class="center "></td>
+                        <td class=" sorting_1" ><%- j %></td>
+                        <td class=" " style="text-align:center;"><%- data[i].fullname %></td>
+                        <td class=" " style="text-align:center;"><%- data[i].email %></td>
+                        <td class="center " style="text-align:center;">
+                          <%if(data[i].photo){%> 
+                          <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>users/<%- data[i].photo %>" height="50" width="50">
+                        <%}else{%>
+                          <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>users/default.png" height="50" width="50">
+                        <% } %>
+                        </td>
+                        <td class="center " style="text-align:center;">
+                          <a data-rel="tooltip" data-placement="left" title data-original-title="View Dependents" class="edit btn btn-sm btn-default" href="dependents/<%- data[i]._id %>"><i class="icons-arrows-21"></i></a>
+
+                          <a data-rel="tooltip" data-placement="bottom" title data-original-title="Patient Info" class="btn btn-sm btn-primary" href="view_each_patient/<%- data[i]._id %>"><i class="fa fa-eye"></i></a>
+
+                          <a data-rel="tooltip" data-placement="right" title data-original-title="Remove Patient Info" class="delete btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-basic" id="<%- data[i]._id %>" onclick="passid(this.id,'<%- data[i].photo %>');"><i class="icons-office-52"></i></a>
+                        </td>
+                      </tr>
+                    <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </div>
+      <!-- END MAIN CONTENT -->
+      <!---Modal start -->
+      <div class="modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              <form action="delete_patients" method="post">
+              <input type="hidden" name="setvalue" id="setvalue" value=""/>
+              <input type="hidden" name="setvalueimage" id="setvalueimage" value=""/>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+                  <h4 class="modal-title"><strong>Delete</strong> Category</h4>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to proceed?<br>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">Oops, I prefer not!</button>
+                  <button type="submit" class="btn btn-primary btn-embossed" >Yes,I'm sure</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+<!--- Modal End -->
+    <%- include layouts/js.ejs %>
+  </body>
+</html>
+<script type="text/javascript">
+function passid(id,image){
+ document.getElementById('setvalue').value=id;
+ document.getElementById('setvalueimage').value=id;
+}
+</script>

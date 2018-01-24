@@ -1,0 +1,278 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>View <strong><%- data.fullname %></strong> Details</h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Patient</a>
+                </li>
+                <li class="active">View Details</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-6">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Particular Patient's Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="#" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Patient's Name</label>
+                              <div>
+                                <%- data.fullname %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Email</label>
+                              <div class="append-icon">
+                                <%- data.email %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Age</label>
+                              <div class="append-icon">
+                                <%- data.age %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Phone Number</label>
+                              <div class="append-icon">
+                                <%- data.phoneNumber %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's DateOfBirth</label>
+                              <div class="append-icon">
+                                <% if(data.dateOfBirth!=null){%>
+                                  <%- data.dateOfBirth.toDateString() %>
+                                <%}%>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Allergies </label>
+                              <div class="append-icon">
+                                <%- data.allergies %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Current Medication</label>
+                              <div class="append-icon">
+                                <%- data.currentMedication %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Gender</label>
+                              <div class="append-icon">
+                                <%- data.gender %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Medical Conditions</label>
+                              <div class="append-icon">
+                                <%- data.medicalConditions %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Region</label>
+                              <div class="append-icon">
+                                <%- data.region %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's Country</label>
+                              <div class="append-icon">
+                                <%- data.practice_country %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Patient's State</label>
+                              <div class="append-icon">
+                                <%- data.practice_state %>  
+                              </div>
+                            </div>
+                                                        
+                          </div>
+                          <div class="item hover-effect new-item">
+                            <div class="user">
+                              <% if (data.photo == '') { %>
+                                  <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>users/default.png" height="200" width="200">
+                                <% } else { %>
+                                  <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>users/<%- data.photo %>" height="200" width="200">
+                                <% } %>                          
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <div class="col-md-6">
+                <div class="panel">                 
+                    <div class="panel-content">
+                      <ul class="nav nav-tabs nav-primary">
+                        <li id="patient_tabs" class="active"><a href="#tab2_1" data-toggle="tab"><i class="icon-home"></i> Cases</a></li>
+                        <li id="patient_tabs"><a href="#tab2_2" data-toggle="tab"><i class="icon-cloud-download"></i> Bookmarks</a></li>
+                        <li id="patient_tabs" ><a href="#tab2_3" data-toggle="tab"><i class="icon-user"></i>Dependents</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane fade active in" id="tab2_1">
+                           <div class="panel-header">
+                              <h3><i class="fa fa-table"></i><%- data.fullname %><strong> Case</strong>  List</h3>
+                            </div>
+                                 <div class="panel-content">
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Case No</th>
+                                    <th>status</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <%
+                                  if(cases.length>0)
+                                    {
+                                    var j=0;
+                                    for(var i=0; i < cases.length; i++) { 
+                                    j=j+1;
+                                  %>
+                    
+                                  <tr>
+                                    <td><%-j%></td>
+                                    <td><%- cases[i].caseNo %></td>
+                                    <td><%- cases[i].status %></td>
+                                    <td class="center " style="text-align:center;">
+
+                                      <a data-rel="tooltip" data-placement="bottom" title data-original-title="Case Info" class="btn btn-sm btn-primary" href="/view_each_case/<%-cases[i]._id%>"><i class="fa fa-eye"></i></a>
+
+                                    </td>
+                                  </tr>
+                                  
+                                <% }
+                                }
+                              else
+                                { %>
+                                    <tr>
+                                      <td colspan="4">No Cases found</td>
+                                    </tr>
+                                 <% } %>
+                                </tbody>
+                              </table>
+                        </div>
+                          </div>
+                        
+                        <div class="tab-pane fade" id="tab2_2"> 
+                               <div class="panel-header">
+                              <h3><i class="fa fa-table"></i><%- data.fullname %><strong> Bookmark</strong>  List</h3>
+                            </div>
+                                 <div class="panel-content">
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Bookmark Name</th>
+                                    <th>Bookmark Type</th>
+                                    <!-- <th>Action</th> -->
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <%
+                                  if(bookmarks.length>0)
+                                    {
+                                    var j=0;
+                                    for(var i=0; i < bookmarks.length; i++) { 
+                                    j=j+1;
+                                  %>
+                    
+                                  <tr>
+                                    <td><%-j%></td>
+                                    <td><%- bookmarks[i].bookmarkName %></td>
+                                    <td><%- bookmarks[i].bookmarkType %></td>
+                                    <!-- <td class="center " style="text-align:center;"> -->
+
+                                      <!-- <a data-rel="tooltip" data-placement="bottom" title data-original-title="Bookmark Info" class="btn btn-sm btn-primary" href="/view_each_case/<%-bookmarks[i]._id%>"><i class="fa fa-eye"></i></a> -->
+
+                                    <!-- </td> -->
+                                  </tr>
+                                  
+                                <% }
+                                }
+                              else
+                                { %>
+                                    <tr>
+                                      <td colspan="4">No Bookmarks found</td>
+                                    </tr>
+                                 <% } %>
+                                </tbody>
+                              </table>
+                        </div>            
+                        </div>
+
+                        <div class="tab-pane fade" id="tab2_3">
+                          <!-- <div class="panel"> -->
+                            <div class="panel-header">
+                              <h3><i class="fa fa-table"></i><%- data.fullname %><strong> Dependents</strong>  List</h3>
+                            </div>
+                            <div class="panel-content">
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Dependent Name</th>
+                                    <th>Relation</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <%
+                                    var j=0;
+                                    for(var i=0; i < data1.length; i++) { 
+                                    j=j+1;
+                                  %>
+                    
+                                  <tr>
+                                    <td><%-j%></td>
+                                    <td><%- data1[i].fullname %></td>
+                                    <td><%- data1[i].relationship %></td>
+                                    <td class="center " style="text-align:center;">
+
+                                      <a data-rel="tooltip" data-placement="bottom" title data-original-title="Dependent Info" class="btn btn-sm btn-primary" href="/view_each_dependent/<%-data1[i]._id%>"><i class="fa fa-eye"></i></a>
+
+                                    </td>
+                                  </tr>
+                                  
+                                <% } %>
+                                </tbody>
+                              </table>
+                            </div>
+                          <!-- </div> -->
+
+                        </div>
+                      
+                      </div>
+                    </div><!----//panel-content------>
+                  </div><!----//panel------>
+                </div><!----//col-md-6------>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+
+<style type="text/css">
+  #patient_tabs {
+    width: 33.33%;
+    position: relative;
+    text-align: center;
+}
+</style>

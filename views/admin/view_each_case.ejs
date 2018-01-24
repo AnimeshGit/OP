@@ -1,0 +1,521 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>View <strong>Cases</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Cases</a>
+                </li>
+                <li class="active">View Cases</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            
+            <div class="col-md-4">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Particular Case Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          
+                          <div class="form-group">
+                            <label class="control-label">Case No</label>
+                            <div>
+                              <%- data.caseNo %>  
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label">Patient Name</label>
+                            <div class="append-icon">
+                            <% if(data.isAnonymous==false){%>
+                                    <%- data.userId.fullname %>
+                              <% }else{%>
+                                    Anonymous
+                              <%}%>
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label">Dependent Name</label>
+                            <div class="append-icon">
+                              <% if(data.isAnonymous==false){%>
+                                <% if( data.familyMemberId!=null){ %>
+                                  <%- data.familyMemberId.fullname %>
+                                <%}else{%>
+                                  No Dependents
+                                <%}%>
+                              <% }else{%>
+                                Anonymous
+                              <%}%>
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label">Primary Diagnosis Name</label>
+                            <div class="append-icon">
+                              <%- data.primeryDiagnosisName %>
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label">Cases Status</label>
+                            <div class="append-icon">
+                              <%- data.status %>  
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label">Anonymous Case</label>
+                            <div class="append-icon">
+                              <% if(data.isAnonymous==false){ %>
+                              <div>NO</div>
+                              <%}else{%>
+                              <div>YES</div>
+                              <%}%>  
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label">Problem Description</label>
+                            <div class="append-icon">
+                              <%- data.diagnosisDescription %>
+                                
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="control-label">Document share</label>
+                            <div class="append-icon">
+                              <% if(data.documents.length>0){ %>
+                              <div class="modal-container" data-toggle="modal" data-target="#modal-image">
+                                <% 
+                                for(var i=0; i<=data.documents.length; i++){
+                                %>
+                                  <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>userDocuments/<%- data.documents[i] %>" height="50" width="50" class="img-responsive modal-img basic-modal-img" alt="">
+                                <%}%>
+                              </div>
+                              <%}else{%>
+                                <div>Documents Not Yet Uploaded</div>
+                              <%}%>
+                            </div>
+                          </div>
+                        
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-8">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title">Case Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div>
+                            <div class="form-group">
+                              <label class="control-label">Opinion Summery</label>
+                              <% if(data1!==null){ %>
+                                <div>
+                                  <%- data1.opinionSummery %>  
+                                </div>
+                              <%}else{%>
+                                <div>
+                                  Data Yet Not Uploaded  
+                                </div>
+                              <%}%>
+                            </div>
+                            
+                            <hr style="height:1px;color:#319db5;background-color:#319db5;">
+                            <div class="form-group">
+                              <label class="control-label">Further Studies</label>
+                              <% if(data1!==null){ %>
+                                <div>
+                                  <%- data1.furtherStudies %>  
+                                </div>
+                              <%}else{%>
+                                <div>
+                                  Data Yet Not Uploaded  
+                                </div>
+                              <%}%>
+                            
+                            </div>
+                            
+                            <hr style="height:1px;color:#319db5;background-color:#319db5;">
+                            <div class="form-group">
+                              <label class="control-label">Therapatic Suggestions</label>
+                              
+                              <% if(data1!=null){ %>
+                                <div>
+                                  <%- data1.therapaticSuggestions %>  
+                                </div>
+                              <%}else{%>
+                                <div>
+                                  Data Yet Not Uploaded  
+                                </div>
+                              <%}%>
+                            
+                            </div>
+                            
+                            <hr style="height:1px;color:#319db5;background-color:#319db5;">
+                            <div class="form-group">
+                              <label class="control-label">Recommended Specialists</label>
+                              <% if(data1!=null){ %>
+                                <div>
+                                  <%- data1.recommendedSpecialists %>  
+                                </div>
+                              <%}else{%>
+                                <div>
+                                  Data Yet Not Uploaded  
+                                </div>
+                              <%}%>
+                            </div>
+                            <hr style="height:2px;color:#319db5;background-color:#319db5;">
+                            <hr style="height:2px;border:none;color:#319db5;background-color:#319db5;">
+                            
+                            <h4><label>Follow Up Questions and Answers:</label></h4>
+                            <div>
+                              <%
+                              if(data2.queries.length>0){
+                                var j=0;
+                                for(var i=0; i < data2.queries.length; i++) { 
+                                 j=j+1;
+                                %>
+                              <div>
+                                <div class="col-sm-6 arrow_box_left" id="QnA1"><%- data2.queries[i].query %></div>&nbsp;
+                                <div class="col-sm-6 arrow_box_right" id="QnA2"><%- data2.queries[i].answer %></div>
+                              </div>&nbsp;
+                              <%}%>
+                              <%}else{%>
+                                <div class="col-sm-6" id="QnA1">No Any Follow Up Questions/Answers</div>&nbsp;
+                              <%}%>
+
+                            </div>
+                          
+                          </div>
+                            <!--  <li id="quickview-toggle"><a href="#"><i class="icon-bubbles"></i></a></li>-->
+                          
+                            <!-- <button class="btn btn-primary" id="quickview-toggle"><a href="#"><i class="icon-bubbles"></i></a></button> -->
+                          
+                            <!--  <div class="form-group">
+                             <label class="control-label">Case No</label> x
+                            <div>
+                              <%# data.caseNo %>  
+                            </div>-->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+           <!-- BEGIN QUICKVIEW SIDEBAR -->
+    <div id="quickview-sidebar">
+      <div class="quickview-header">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#chat" data-toggle="tab">Chat</a></li>          
+        </ul>
+      </div>
+      <div class="quickview">
+        <div class="tab-content">
+          <div class="tab-pane fade active in" id="chat">
+            <div class="chat-body current">
+              <div class="chat-search">
+                <form class="form-inverse" action="#" role="search">
+                  <div class="append-icon">
+                    <input type="text" class="form-control" placeholder="Search contact...">
+                    <i class="icon-magnifier"></i>
+                  </div>
+                </form>
+              </div>
+              <div class="chat-groups">
+                <div class="title">GROUP CHATS</div>
+                <ul>
+                  <li><i class="turquoise"></i> Favorites</li>
+                  <li><i class="turquoise"></i> Office Work</li>
+                  <li><i class="turquoise"></i> Friends</li>
+                </ul>
+              </div>
+              <div class="chat-list">
+                <div class="title">FAVORITES</div>
+                <ul>
+                  <li class="clearfix">
+                    <div class="user-img">
+                      <img src="../assets/global/images/avatars/avatar13.png" alt="avatar" />
+                    </div>
+                    <div class="user-details">
+                      <div class="user-name">Bobby Brown</div>
+                      <div class="user-txt">On the road again...</div>
+                    </div>
+                    <div class="user-status">
+                      <i class="online"></i>
+                    </div>
+                  </li>
+                  <li class="clearfix">
+                    <div class="user-img">
+                      <img src="../assets/global/images/avatars/avatar5.png" alt="avatar" />
+                      <div class="pull-right badge badge-danger">3</div>
+                    </div>
+                    <div class="user-details">
+                      <div class="user-name">Alexa Johnson</div>
+                      <div class="user-txt">Still at the beach</div>
+                    </div>
+                    <div class="user-status">
+                      <i class="away"></i>
+                    </div>
+                  </li>
+                  <li class="clearfix">
+                    <div class="user-img">
+                      <img src="../assets/global/images/avatars/avatar10.png" alt="avatar" />
+                    </div>
+                    <div class="user-details">
+                      <div class="user-name">Bobby Brown</div>
+                      <div class="user-txt">On stage...</div>
+                    </div>
+                    <div class="user-status">
+                      <i class="busy"></i>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="chat-list">
+                <div class="title">FRIENDS</div>
+                <ul>
+                  <li class="clearfix">
+                    <div class="user-img">
+                      <img src="../assets/global/images/avatars/avatar7.png" alt="avatar" />
+                      <div class="pull-right badge badge-danger">3</div>
+                    </div>
+                    <div class="user-details">
+                      <div class="user-name">James Miller</div>
+                      <div class="user-txt">At work...</div>
+                    </div>
+                    <div class="user-status">
+                      <i class="online"></i>
+                    </div>
+                  </li>
+                  <li class="clearfix">
+                    <div class="user-img">
+                      <img src="../assets/global/images/avatars/avatar11.png" alt="avatar" />
+                    </div>
+                    <div class="user-details">
+                      <div class="user-name">Fred Smith</div>
+                      <div class="user-txt">Waiting for tonight</div>
+                    </div>
+                    <div class="user-status">
+                      <i class="offline"></i>
+                    </div>
+                  </li>
+                  <li class="clearfix">
+                    <div class="user-img">
+                      <img src="../assets/global/images/avatars/avatar8.png" alt="avatar" />
+                    </div>
+                    <div class="user-details">
+                      <div class="user-name">Ben Addams</div>
+                      <div class="user-txt">On my way to NYC</div>
+                    </div>
+                    <div class="user-status">
+                      <i class="offline"></i>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="chat-conversation">
+              <div class="conversation-header">
+                <div class="user clearfix">
+                  <div class="chat-back">
+                    <i class="icon-action-undo"></i>
+                  </div>
+                  <div class="user-details">
+                    <div class="user-name">James Miller</div>
+                    <div class="user-txt">On the road again...</div>
+                  </div>
+                </div>
+              </div>
+              <div class="conversation-body">
+                <ul>
+                  <li class="img">
+                    <div class="chat-detail">
+                      <span class="chat-date">today, 10:38pm</span>
+                      <div class="conversation-img">
+                        <img src="../assets/global/images/avatars/avatar4.png" alt="avatar 4"/>
+                      </div>
+                      <div class="chat-bubble">
+                        <span>Hi you!</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="img">
+                    <div class="chat-detail">
+                      <span class="chat-date">today, 10:45pm</span>
+                      <div class="conversation-img">
+                        <img src="../assets/global/images/avatars/avatar4.png" alt="avatar 4"/>
+                      </div>
+                      <div class="chat-bubble">
+                        <span>Are you there?</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="img">
+                    <div class="chat-detail">
+                      <span class="chat-date">today, 10:51pm</span>
+                      <div class="conversation-img">
+                        <img src="../assets/global/images/avatars/avatar4.png" alt="avatar 4"/>
+                      </div>
+                      <div class="chat-bubble">
+                        <span>Send me a message when you come back.</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="conversation-message">
+                <input type="text" placeholder="Your message..." class="form-control form-white send-message" />
+                <div class="item-footer clearfix">
+                  <div class="footer-actions">
+                    <i class="icon-rounded-marker"></i>
+                    <i class="icon-rounded-camera"></i>
+                    <i class="icon-rounded-paperclip-oblique"></i>
+                    <i class="icon-rounded-alarm-clock"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>       
+        </div>
+      </div>
+    </div>
+    <!-- END QUICKVIEW SIDEBAR -->
+      <%- include layouts/footer.ejs %>
+    </div>
+  <!-- END PAGE CONTENT -->
+<%- include layouts/js.ejs %>
+<script src="../assets/global/js/quickview.js"></script> <!-- Chat Script -->
+
+  <div class="modal fade modal-image" id="modal-image" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+        </div>
+        <div class="modal-body">
+          <% 
+            for(var i=0; i<=data.documents.length; i++){
+          %>
+          <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>userDocuments/<%- data.documents[i] %>" class="img-responsive">
+          <%}%>
+        </div>
+        <!-- <div class="modal-footer">
+          <p>Title of your image</p>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+<style type="text/css">
+.basic-modal-img {
+    width: 100%;
+    margin-top: -45px;
+    height: 198%;
+}
+.modal-container {
+  height: 91px;
+  width: 101px;
+}
+.modal-body {
+    position: fixed;
+    /*padding: 15px;*/
+}
+
+/*img:active {
+    -webkit-transform: scale(4);
+}*/
+#QnA1 {
+    width: 480px;
+    height: 100px;
+    background-color: white;
+    box-shadow: 1px 1px 7px #319db5;
+    float: right;
+}
+#QnA2 {
+    width: 480px;
+    height: 100px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #888888;
+   margin-right: 20px;
+}
+.arrow_box_left {
+  position: relative;
+  background: #88b7d5;
+  border: 4px solid #c2e1f5;
+  margin: 0px 0px 20px 15px;
+}
+.arrow_box_left:after, .arrow_box_left:before {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrow_box_left:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #fff;
+  border-width: 15px;
+  margin-top: -15px;
+}
+.arrow_box_left:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-right-color: #c2e1f5;
+  border-width: 21px;
+  margin-top: -21px;
+}
+
+.arrow_box_right {
+  position: relative;
+  background: #88b7d5;
+  border: 4px solid #c2e1f5;
+}
+.arrow_box_right:after, .arrow_box_right:before {
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrow_box_right:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: #fff;
+  border-width: 15px;
+  margin-top: -15px;
+}
+.arrow_box_right:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-left-color: #c2e1f5;
+  border-width: 21px;
+  margin-top: -21px;
+}
+</style>

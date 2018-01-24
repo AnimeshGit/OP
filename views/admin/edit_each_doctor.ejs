@@ -1,0 +1,467 @@
+<%- include layouts/header.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> <!-- Form Validation -->
+<script src="../assets/global/plugins/jquery-validation/additional-methods.min.js"></script> <!-- Form Validation Additional Methods - OPTIONAL -->
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2>Edit <strong>Doctors</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">             
+        <li><a href="#">Doctors</a>
+        </li>
+        <li class="active">Edit Doctors</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">        
+    <div class="col-md-12">
+      <div class="panel panel-default no-bd">
+        <div class="panel-header bg-dark">
+          <h3 class="panel-title"><strong>Edit</strong> Necessary Details</h3>
+        </div>
+        <div class="panel-body bg-white">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <form role="form" class="form-validation" action="/update_doctor" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="doctorId" value="<%= data._id %>">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Name</label>
+                      <div class="append-icon">
+                        <input type="text" name="fullname" class="form-control" placeholder="Enter Name of Doctor.." value="<%- data.fullname %>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="control-label">Doctors Image</label>
+                    <div class="file">
+                      <div class="option-group">
+                        <span class="file-button btn-primary">Choose File</span>
+                        <input type="file" accept="image/*" class="custom-file" name="photo" multiple="multiple" id="avatar" onchange="document.getElementById('uploader').value = this.value;">
+                        <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly="">
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Email</label>
+                      <div class="append-icon">
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email.." value="<%- data.email %>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Password</label>
+                      <div class="append-icon">
+                        <input type="password" name="password" class="form-control" placeholder="universal password(12345)" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Phone</label>
+                      <div class="append-icon">
+                        <input type="text" data-mask="+(99)(9999)9999(999)-9999" value="<%- data.phoneNumber %>" name="phoneNumber" class="form-control" placeholder="Enter phone number of the Doctor Here.." required="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="form-label">Doctors Date Of Birth</label>
+                    <div class="prepend-icon">
+                    <% if(data.dateOfBirth){ %>
+                      <input type="text" value="<%- data.dateOfBirth.toDateString() %>" name="dateOfBirth" id="doctors_DOB" class="b-datepicker form-control" placeholder="Select a date...">
+                      <i class="icon-calendar"></i>
+                    <%}else{%>
+                      <input type="text" value="" name="dateOfBirth" id="doctors_DOB" class="b-datepicker form-control" placeholder="Select a date...">
+                      <i class="icon-calendar"></i>
+                    <%}%>
+                    </div>
+                  </div>
+                </div>
+                <!-- .toDateString() -->
+
+                <div class="row"> 
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Doctors Age</label>
+                        <input type="text" id="doctorAge" name="age" value="<%- data.age %>" class="form-control" readonly>
+                      </div>  
+                    </div>                     
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label class="control-label">Doctors Gender</label>
+                          <div class="option-group">
+                            <%# if (data.gender != 0) { %>
+                              <select id="gender" name="gender" class="" style="width: 200px" required>
+                                <!-- <option selected hidden diasabled><%- data.gender %></option> -->
+                                <option value="Male"<% if(data.gender=="Male"){%>selected<% } %>>Male</option>
+                                <option value="Female"<% if(data.gender=="Female"){%>selected<% } %>>Female</option>
+                                <option value="Transgender Male"<% if(data.gender=="Transgender Male"){%>selected<% } %>>Transgender Male</option>
+                                <option value="Transgender Female"<% if(data.gender=="Transgender Female"){%>selected<% } %>>Transgender Female</option>
+                                <option value="Not to Disclose"<% if(data.gender=="Not to Disclose"){%>selected<% } %>>Not to Disclose</option>
+                              </select>
+                              <%# }else { %>
+                              <!-- <select id="gender" name="gender" class="" style="width: 200px" required> -->
+                                <!-- <option selected hidden diasabled>Select gender...</option> -->
+                                <!-- <option value="Male">Male</option> -->
+                                <!-- <option value="Female">Female</option> -->
+                                <!-- <option value="Transgender Male">Transgender Male</option> -->
+                                <!-- <option value="Transgender Female">Transgender Female</option> -->
+                                <!-- <option value="Not to Disclose">Not to Disclose</option> -->
+                              <!-- </select> -->
+                              <%# } %>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="control-label">Doctors Region </label>
+                           <div class="option-group">
+                            <%# if (data.region != null || data.region != undefined) { %>
+                            <select id="region" name="region" class="" style="width: 200px" required>
+                              <!-- <option selected hidden diasabled><%- data.region %></option> -->
+                              <option value="American"<% if(data.region=="American"){%>selected<% } %>>American</option>
+                              <option value="Austrelian"<% if(data.region=="Austrelian"){%>selected<% } %>>Austrelian</option>
+                              <option value="Indian"<% if(data.region=="Indian"){%>selected<% } %>>Indian</option>
+                              <option value="Indonesian"<% if(data.region=="Indonesian"){%>selected<% } %>>Indonesian</option>
+                              <option value="Shrilankan"<% if(data.region=="Shrilankan"){%>selected<% } %>>Shrilankan</option>
+                              <option value="Aafrican"<% if(data.region=="Aafrican"){%>selected<% } %>>Aafrican</option>
+                              <option value="Chienese"<% if(data.region=="Chienese"){%>selected<% } %>>Chienese</option>
+
+                              <!-- <option value="American">American</option>
+                              <option value="Austrelian">Austrelian</option>
+                              <option value="Indian">Indian</option>
+                              <option value="Indonesian">Indonesian</option>
+                              <option value="Shrilankan">Shrilankan</option>
+                              <option value="Aafrican">Aafrican</option>
+                              <option value="Chienese">Chienese</option> -->
+                            </select>
+                            <%# }else { %>
+                            <!-- <select id="region" name="region" class="" style="width: 200px" required>
+                              <option selected hidden diasabled>Select region...</option>
+                              <option value="American">American</option>
+                              <option value="Austrelian">Austrelian</option>
+                              <option value="Indian">Indian</option>
+                              <option value="Indonesian">Indonesian</option>
+                              <option value="Shrilankan">Shrilankan</option>
+                              <option value="Aafrican">Aafrican</option>
+                              <option value="Chienese">Chienese</option>
+                            </select> -->
+                            <%# } %>
+                          </div>
+                        </div>
+                    </div>
+                </div>  
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Education </label>
+                              <div class="append-icon">
+                                <input type="text" value="<%- data.doctor_education %>" name="doctor_education" class="form-control" placeholder="Enter Education of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Specialation </label>
+                              <div class="option-group">
+                                <select name="doctor_specialization" required>
+                                  <option value="Specialist (specified)"<% if(data.doctor_specialization=="Specialist (specified)"){%>selected<% } %>>Specialist (specified)</option>
+                                  <option value="Internal Medicine"<% if(data.doctor_specialization=="Internal Medicine"){%>selected<% } %>>Internal Medicine</option>
+                                  <option value="Pediatrician"<% if(data.doctor_specialization=="Pediatrician"){%>selected<% } %>>Pediatrician</option>
+                                  <option value="Obstetrician/Gynecologist"<% if(data.doctor_specialization=="Obstetrician/Gynecologist"){%>selected<% } %>>Obstetrician/Gynecologist</option>
+                                </select>
+                              </div>
+
+                              
+                            </div>
+                          </div>
+                        </div>  
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Location </label>
+                              <div class="append-icon">
+                                <input type="text" value="<%- data.doctor_location %>" name="doctor_location" class="form-control" placeholder="Enter Location of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Fees </label>
+                              <div class="append-icon">
+                                <input type="text" value="<%- data.doctor_fees %>" name="doctor_fees" class="form-control" placeholder="Enter Fees of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Working Hours </label>
+                                <div>
+                                    <label class="col-sm-1 control-label">From:</label>
+                                    <div class="col-sm-5">
+                                       <input type="text" name="doctors_timing1" id="doctors_timing1" class="timepicker form-control" placeholder="00:00 am " required="">
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <label class="col-sm-1 control-label">To:</label>
+                                    <div class="col-sm-5">
+                                      <input type="text" name="doctors_timing2" id="doctors_timing2"  class="timepicker form-control" placeholder="00:00 pm" required="">
+                                    </div>
+                                  </div>
+                            </div>
+                          </div>
+                          
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Doctors Working Days</label>
+                                <div class="input-group">
+                                    <div class="icheck-inline">
+                                     
+                                      <%# JSON.stringify(data.workingDays) %>
+                                      <% var workingDays = data.workingDays;
+                                      %>
+                                     
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Monday"<% if(workingDays.indexOf('Monday')>-1){%>checked<%}%>> Monday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Tuesday"<% if(workingDays.indexOf('Tuesday')>-1){%>checked<%}%>> Tuesday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Wednesday"<% if(workingDays.indexOf('Wednesday')>-1){%>checked<%}%>> Wednesday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Thursday"<% if(workingDays.indexOf('Thursday')>-1){%>checked<%}%>> Thursday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Friday"<% if(workingDays.indexOf('Friday')>-1){%>checked<%}%>> Friday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Saturday"<% if(workingDays.indexOf('Saturday')>-1){%>checked<%}%>> Saturday</label>
+                                      <label>
+                                        <input type="checkbox" name="days" data-checkbox="icheckbox_minimal-blue" value="Sunday"<% if(workingDays.indexOf('Sunday')>-1){%>checked<%}%>> Sunday</label>
+                                      
+                                    </div>
+                                  </div>
+                              </div>
+                            </div> 
+                        </div>
+
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">About Doctor</label>
+                                <div class="append-icon">
+                                  <textarea rows="5" class="form-control underlined" name="about_doctor"><%- data.about_doctor %></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">Doctors Address </label>
+                                <div class="append-icon">
+                                  <textarea rows="5" class="form-control underlined" name="doctor_address"><%- data.address %></textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">NPI Number</label>
+                                <div class="append-icon">
+                                  <input type="text" name="npi_number" value="<%- data.npi_number %>" class="form-control" placeholder="Enter NPI Number of Doctor.." required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">License Number</label>
+                                <div class="append-icon">
+                                  <input type="text" name="license_number" class="form-control" value="<%- data.license_number %>" placeholder="Enter License Number of Doctor.." required>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">Total Practice Years</label>
+                                <div class="append-icon">
+                                  <input type="number" name="total_practice_years" min="0" value="<%- data.total_practice_years %>" class="form-control" placeholder="Enter total practice years of Doctor.." required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                              <div class="form-group">
+                                <label class="control-label">Medical Board Certification</label>
+                                <%                                    
+                                for(var i=0; i < data.m_b_certification.length; i++) { 
+                                %>
+                                <div class="append-icon">
+                                  <input type="text" name="m_b_certification[]" id="m_b_certification1" value="<%- data.m_b_certification[i] %>" class="form-control" placeholder="Please  fill before you click on Add Button" required>
+                                </div>&nbsp;
+                                <%}%>
+                                <span id="clone_M_B_C"></span>
+
+                              </div>
+                            </div>
+                            
+                            <div class="col-sm-2">
+                            <input type="hidden" name="ivalue" id="ivalue1" value="0">
+                              <button type="button" id="add_new_mbc" class="btn btn-embossed btn-primary">Add</button>
+                            </div>
+                          
+                          </div>
+
+                          <div class="row">
+
+                            <div class="col-sm-4">
+                              <div class="form-group">
+                                <label class="control-label">Work History</label>
+                                <%                                    
+                                for(var i=0; i < data.work_history.length; i++) { 
+                                %>
+                                <div class="append-icon">
+                                  <input type="text" name="work_history[]" id="work_history1" value="<%- data.work_history[i] %>" class="form-control" placeholder="Please fill before you click on Add Button" required>
+                                </div>&nbsp;
+                                <%}%>
+                                <span id="clone_work"></span>
+                              </div>
+                            </div>
+                            
+
+                            <div class="col-sm-2">
+                            <input type="hidden" name="ivalue" id="ivalue2" value="0">
+                              <button type="button" id="add_new_work" class="btn btn-embossed btn-primary">Add</button>
+
+                              <!-- <a data-rel="tooltip" data-placement="bottom" title data-original-title="Delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-basic" id="<%#- data.tests[i]._id %>" onclick="passid(this.id);"><i class="icons-office-52"></i></a> -->
+                              
+                            </div>
+
+                            <div class="col-sm-4">
+                              <div class="form-group">
+                                <label class="control-label">Awards Accolades</label>
+                                <%                                    
+                                for(var i=0; i < data.awards_accolades.length; i++) { 
+                                %>
+                                <div class="append-icon">
+                                  <input type="text" name="awards_accolades[]" value="<%- data.awards_accolades[i] %>" id="awards_accolades1" class="form-control" placeholder="Please  fill before you click on Add Button" required>
+                                </div>&nbsp;
+                                <%}%>
+                                <span id="clone_awards"></span>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                            <input type="hidden" name="ivalue" id="ivalue3" value="0">
+                              <button type="button" id="add_new_award" class="btn btn-embossed btn-primary">Add</button>
+
+                              <!-- <a data-rel="tooltip" data-placement="bottom" title data-original-title="Delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-basic" id="<%#- data.tests[i]._id %>" onclick="passid(this.id);"><i class="icons-office-52"></i></a> -->
+                              
+                            </div>
+                          </div>  
+
+                          <div class="text-center  m-t-20">
+                            <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                            <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>    
+            <%- include layouts/footer.ejs %>
+          </div>
+          <!-- END PAGE CONTENT -->
+          <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> <!-- >Bootstrap Date Picker -->
+<script src="../assets/global/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+<script src="../assets/global/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
+
+<script type="text/javascript">
+ var output = '<%= data.workingHours %>';
+  var time = output.split('-');
+  console.log(time);
+  document.getElementById('doctors_timing1').value = time[0]; 
+  document.getElementById('doctors_timing2').value = time[1]; 
+</script>
+   
+<script type="text/javascript">
+// $('document').ready(function () {
+//   $('#doctorAge').val('')
+// })
+
+$('#doctors_DOB').datepicker({
+  // dateFormat: 'dd/mm/yy',
+  changeMonth: true,
+  changeYear: true,
+  yearRange: '1900:2150',
+  maxDate: -1,
+  inline: true,
+
+   onSelect: function() {
+      var birthDay = document.getElementById("doctors_DOB").value;
+      var DOB = new Date(birthDay);
+      var today = new Date();
+      var age = today.getTime() - DOB.getTime();
+      age = Math.floor(age / (1000 * 60 * 60 * 24 * 365.25));
+      document.getElementById('doctorAge').value = age;              
+  }
+});  
+
+</script>
+<script src="../assets/global/plugins/select2/select2.min.js"></script> <!-- Select Inputs -->
+<script src="../assets/global/plugins/icheck/icheck.min.js"></script> <!-- Checkbox & Radio Inputs -->
+<script type="text/javascript">
+$(document).ready(function(){
+  var i=2;
+  $("#add_new_mbc").click(function(){
+    var html='<input type="text" name="m_b_certification" id="m_b_certification'+i+'" class="form-control" placeholder="Please  fill before you click on Add Button" required>&nbsp;';
+    var m_b_c = $("#m_b_certification"+(i-1)).val();
+    if (m_b_c!='') {
+        $("#clone_M_B_C").append(html);
+      document.getElementById('ivalue1').value = i-1;
+        i++;
+    }
+  });
+  $("#add_new_work").click(function(){
+    var html='<input type="text" name="work_history" id="work_history'+i+'" class="form-control" placeholder="Please  fill before you click on Add Button" required>&nbsp;';
+    var work_hist = $("#work_history"+(i-1)).val();
+    if (work_hist!='') {
+        $("#clone_work").append(html);
+      document.getElementById('ivalue2').value = i-1;
+        i++;
+    }
+  });
+  $("#add_new_award").click(function(){
+    var html='<input type="text" name="awards_accolades" id="awards_accolades'+i+'" class="form-control" placeholder="Please  fill before you click on Add Button" required>&nbsp;';
+    var awards = $("#awards_accolades"+(i-1)).val();
+    if (awards!='') {
+        $("#clone_awards").append(html);
+      document.getElementById('ivalue3').value = i-1;
+        i++;
+    }
+  });
+});
+</script>
+
+
+
+

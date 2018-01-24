@@ -1,0 +1,43 @@
+{
+  "name": "opinion-plus",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "array-unique": "^0.3.2",
+    "bcrypt": "^1.0.2",
+    "body-parser": "~1.17.1",
+    "co": "^4.6.0",
+    "connect-flash": "^0.1.1",
+    "connect-multiparty": "^2.0.0",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.3",
+    "debug": "~2.6.3",
+    "ejs": "^2.5.6",
+    "emailjs": "^1.0.10",
+    "express": "~4.15.2",
+    "express-session": "^1.15.3",
+    "gridfs-stream": "^1.1.1",
+    "group-array": "^0.3.3",
+    "jsonwebtoken": "^7.4.1",
+    "markdown": "^0.5.0",
+    "mathjs": "^3.13.3",
+    "moment": "^2.18.1",
+    "mongo-xlsx": "^1.0.12",
+    "mongoose": "^4.10.6",
+    "mongoose-createdat-updatedat": "^1.1.0",
+    "morgan": "~1.8.1",
+    "multer": "^1.3.0",
+    "node-fetch": "^1.7.1",
+    "node-random": "^1.0.1",
+    "nodemailer": "^4.0.1",
+    "pug": "~2.0.0-beta11",
+    "random-js": "^1.0.8",
+    "randomstring": "^1.1.5",
+    "serve-favicon": "~2.4.2",
+    "twilio": "^3.3.0",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,79 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Add <strong>Prices</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Prices</a>
+                </li>
+                <li class="active">Add Prices</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Fill</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="insert_prices" method="post" >
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Prices Name</label>
+                              <div class="append-icon">
+                                <input type="text" name="price_name" class="form-control" placeholder="Enter Name of Price" required>
+                              </div>
+                            </div>
+                        
+                            <div class="form-group">
+                              <label class="control-label">Amount</label>
+                              <div class="append-icon">
+                                <input type="number" name="amount" min="0" class="form-control" placeholder="Enter The Amount Here.." required>
+                              </div>
+                            </div>
+                            </div>                         
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Prices Description</label>
+                              <div class="append-icon">
+                                <textarea rows="6" class="form-control underlined" name="price_desc" id="price_desc"></textarea></div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Prices Type</label>
+                                <div class="option-group">
+                                  <select id="pricetype" name="pricetype" class="" >
+                                    <option value="0">Only Opinion</option>
+                                    <option value="1">Opinion with 1 follow up</option>
+                                    <option value="2">Follow up only</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+    <!-- Form Validation -->
+    <script src="../assets/global/plugins/select2/select2.min.js"></script> 
+    
+    

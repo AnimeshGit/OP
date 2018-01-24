@@ -1,0 +1,110 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>View <strong>Dependant</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Dependant</a>
+                </li>
+                <li class="active">View Dependant</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Particular Dependant's Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="#" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Name</label>
+                              <div>
+                                <%- data.fullname %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Dependant's DOB</label>
+                              <div class="append-icon">
+                                <%- data.dateOfBirth.toDateString() %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Age Group</label>
+                              <div class="append-icon">
+                                <%- data.age %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Region</label>
+                              <div class="append-icon">
+                                <%- data.region %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Gender</label>
+                              <div class="append-icon">
+                                <%- data.gender %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Relation </label>
+                              <div class="append-icon">
+                                <%- data.relationship %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Allergies</label>
+                              <div class="append-icon">
+                                <%- data.allergies %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Current Medication</label>
+                              <div class="append-icon">
+                                <%- data.currentMedication %>  
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Medical Conditions</label>
+                              <div class="append-icon">
+                                <%- data.medicalConditions %>  
+                              </div>
+                            </div>
+                            
+                            
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Dependant's Photo</label>
+                              <div>
+                                <% if (data.photo == '') { %>
+                                  <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>dependents/default.png" width="400" height="400"">
+                                <% } else { %>
+                                  <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>dependents/<%- data.photo %>" width="400" height="400">
+                                <% } %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+     </body>
+</html>

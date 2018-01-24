@@ -1,0 +1,123 @@
+<%- include layouts/header.ejs %>
+<script type="text/javascript" src="/javascripts/jquery.min.js">
+    $("#pharmacy_timing1").timepicki();
+   $("#pharmacy_timing2").timepicki();
+</script>
+<script type="text/javascript" src="/javascripts/timepicki.js"></script>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Add <strong>Pharmacy</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Pharmacy</a>
+                </li>
+                <li class="active">Add Pharmacy</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Fill</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="insert_pharmacy" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Name</label>
+                              <div class="append-icon">
+                                <input type="text" name="pharmacy_name" class="form-control" placeholder="Enter Name For pharmacy" required="" >
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy logo</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">Choose File</span>
+                                  <input type="file" multiple="" class="custom-file" name="pharmacy_logo" id="avatar" accept="image/*" onchange="document.getElementById('uploader').value = this.value;">
+                                  <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly="">
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Tagline</label>
+                              <div class="append-icon">
+                                <input type="text" name="pharmacy_tagline" class="form-control" placeholder="Enter tagline for the pharmacy" required="">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Email</label>
+                              <div class="append-icon">
+                                <input type="email" name="pharmacy_email" class="form-control" placeholder="Enter email of the Pharmacy " required="">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Phone</label>
+                              <div class="append-icon">
+                                <input type="text" data-mask="(999) 999-9999" name="pharmacy_phone" class="form-control" placeholder="Enter phone number of the Pharmacy" required="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">About Pharmacy</label>
+                              <div class="append-icon">
+                                <textarea rows="6" class="form-control underlined" name="about_pharmacy" id="about_pharmacy"></textarea></div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Address</label>
+                              <div class="append-icon">
+                                <textarea rows="5" class="form-control underlined" name="pharmacy_address" id="about_pharmacy" ></textarea></div>
+                            </div>
+                            <div >
+                              <label class="control-label">Pharmacy Timing</label>
+                              <div>
+                              <div>
+                              <label class="col-sm-1 control-label">From:</label>
+                                <div class="col-sm-5">
+                                 <div class="append-icon">
+                                   <input type="text" name="pharmacy_timing1" class="timepicker form-control" placeholder=" 00:00 am " required="">
+                                  </div> 
+                                </div>
+                                </div>
+                                <div>
+                                <label class="col-sm-1 control-label">To:</label>
+                                <div class="col-sm-5">
+                                  <div class="append-icon">
+                                  <input type="text" name="pharmacy_timing2"  class="timepicker form-control" placeholder=" 00:00 pm" required="">
+                                  </div>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+<script src="../assets/global/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
+<style type='text/css'  href='/stylesheets/timepicki.css'></style>
+
+    <!-- Form Validation -->
+    

@@ -1,0 +1,93 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>View <strong>Laboratory</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Laboratory</a>
+                </li>
+                <li class="active">View Laboratory</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Perticular Laboratory Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="blogs_update" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Name</label>
+                              <div>
+                                <%- data.lab_name %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Email</label>
+                              <div class="append-icon">
+                                <%- data.lab_email %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Timing</label>
+                              <div class="append-icon">
+                                <%- data.lab_timing %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Phone</label>
+                              <div class="append-icon">
+                                <%- data.lab_phone %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Headline</label>
+                              <div class="append-icon">
+                                <%- data.lab_headline %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">About Laboratory </label>
+                              <div class="append-icon">
+                                <%- data.about_lab %>  
+                              </div>
+                            </div>
+                            
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Logo</label>
+                              <div>
+                                <% if(data.lab_logo==''){ %>
+                            <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>labs/default.png" height="400" width="400">
+                                <% }else{ %>
+                            <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>labs/<%- data.lab_logo %>" height="400" width="400">
+                                <% }%>
+                                <!-- <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>pharmacy_logos/<%- data.pharmacy_logo %>" width="400" height="400"> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>

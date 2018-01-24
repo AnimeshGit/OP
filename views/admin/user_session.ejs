@@ -1,0 +1,80 @@
+<%- include layouts/header.ejs %>
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <!-- <div class="header">
+            <h2> All<strong> Patients</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">
+                <li><a href="#">Users</a></li>
+                <li class="active">Patients</li>
+              </ol>
+            </div>
+          </div>
+           -->
+          <div class="header">
+            <h2>User Session</h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">
+                <!-- <li class="active"><a href="#">UserSession</a> -->
+                </li>
+              </ol>
+            </div>
+          </div> 
+          
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+
+                <div class="panel-header">
+                  <h3><i class="icon-bulb"></i> <strong> User</strong> Session</h3>
+                </div>
+                
+                <div class="panel-content pagination2 table-responsive">
+                  <table class="table dataTable" id="table2">
+                    <thead>
+                      <tr>
+                        <th class="no_sort" tabindex="0" rowspan="1" colspan="1" style="width: 42px;"></th>
+                        <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" style="width: 100px;">
+                          Sr.No
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 250px;text-align:center;">
+                         API Name
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 150px;text-align:center;">
+                          User
+                        </th>
+                        <!-- <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 200px;text-align:center;">
+                          User
+                        </th> -->
+                      </tr>
+                    </thead>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <%
+                      var j=0;
+                      for(var i=0; i < data.length; i++) { 
+                      j=j+1;
+                    %>
+                      <tr class="gradeA odd">
+                        <td class="center "></td>
+                        <td class=" sorting_1" ><%- j %></td>
+                        <td class=" " style="text-align:center;"><%- data[i].apiName %></td>
+                       <!--  <td class=" " style="text-align:center;"><%- data[i].searchType %></td> -->
+                        <td class=" " style="text-align:center;"><%- data[i].userId.fullname %></td>
+                      </tr>
+                    <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </div>
+      <!-- END MAIN CONTENT -->
+    <%- include layouts/js.ejs %>
+  </body>
+</html>
+<script type="text/javascript">
+</script>

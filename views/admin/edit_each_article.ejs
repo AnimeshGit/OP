@@ -1,0 +1,106 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Edit <strong>Articles</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Articles</a>
+                </li>
+                <li class="active">Edit Articles</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Edit</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="/update_articles" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                         
+                         
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                            <input type="hidden" name="article_id" id="article_id" value="<%- data._id %>">
+                              <label class="control-label">Article Title</label>
+                              <div class="append-icon">
+                                <input type="text" name="article_title" value="<%- data.title %>" class="form-control" placeholder="Enter Title For Article" required>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Article Image</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">Choose File</span>
+                                  <input type="file" accept="image/*" value="#" class="custom-file" name="article_image" id="avatar" onchange="document.getElementById('uploader').value = this.value;">
+                                  <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Article Author</label>
+                              <div class="append-icon">
+                                <input type="text" name="article_author" value="<%- data.authorName %>" class="form-control" placeholder="" >
+                                <%# globalConsTant.AdminSession.adminFirstName %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Select States</label>
+                               <div class="option-group">
+
+                                  <select id="state" name="state" class="">
+                                    <!-- <option value="<%- data.location %>"><%- data.location %></option> -->
+                                    <%
+                                      for(var i=0; i < data1.length; i++) { 
+                                    %>
+                                    <option value="<%- data1[i].name %>"<% if(data1[i].name==data.state){ %>selected<% } %>><%= data1[i].name%></option>
+
+                                    <%}%>
+                                  </select>
+                                </div>
+                            </div>
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Article Content</label>
+                              <div class="append-icon">
+                                <textarea rows="10" class="form-control underlined" name="article_content" id="blog_content" ><%- data.content %></textarea></div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Article Types</label>
+                              <div class="option-group">
+                                <select id="types" name="types" class="">
+                                  <option value="Disease Alert"<% if(data.type=="Disease Alert"){%>selected<% } %>>Disease Alert</option>
+                                <option value="Medication Alert"<% if(data.type=="Medication Alert"){%>selected<% } %>>Medication Alert</option>
+                                  <option value="Infection Alert"<% if(data.type=="Infection Alert"){%>selected<% } %>>Infection Alert</option>
+                                  <option value="Announcements"<% if(data.type=="Announcements"){%>selected<% } %>>Announcements</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+<!-- Form Validation -->
+<script src="../assets/global/plugins/select2/select2.min.js"></script> 
+    

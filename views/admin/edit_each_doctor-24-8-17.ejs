@@ -1,0 +1,356 @@
+<%- include layouts/header.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> <!-- Form Validation -->
+<script src="../assets/global/plugins/jquery-validation/additional-methods.min.js"></script> <!-- Form Validation Additional -->
+<script src="https://cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js"></script><!--  Methods - OPTIONAL -->
+<script src="http://underscorejs.org/underscore-min.js"></script>
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2>Edit <strong>Doctors</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">             
+        <li><a href="#">Doctors</a>
+        </li>
+        <li class="active">Edit Doctors</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">        
+    <div class="col-md-12">
+      <div class="panel panel-default no-bd">
+        <div class="panel-header bg-dark">
+          <h3 class="panel-title"><strong>Edit</strong> Necessary Details</h3>
+        </div>
+        <div class="panel-body bg-white">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <form role="form" class="form-validation" action="/update_doctor" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="doctorId" value="<%= data._id %>">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Name</label>
+                      <div class="append-icon">
+                        <input type="text" name="doctors_name" class="form-control" placeholder="Enter Name of Doctor.." value="<%- data.fullname %>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="control-label">Doctors Image</label>
+                    <div class="file">
+                      <div class="option-group">
+                        <span class="file-button btn-primary">Choose File</span>
+                        <input type="file" multiple="" class="custom-file" name="photo" id="avatar" onchange="document.getElementById('uploader').value = this.value;">
+                        <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly="">
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Email</label>
+                      <div class="append-icon">
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email.." value="<%- data.email %>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Password</label>
+                      <div class="append-icon">
+                        <input type="password" name="password" value="12345" class="form-control" placeholder="universal password(12345)" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Doctors Phone</label>
+                      <div class="append-icon">
+                        <input type="text" data-mask="+(99)(9999)9999(999)-9999" value="<%- data.phoneNumber %>" name="phoneNumber" class="form-control" placeholder="Enter phone number of the Doctor Here.." required="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="form-label">Doctors Date Of Birth</label>
+                    <div class="prepend-icon">
+                      <input type="text" value="<%- data.dateOfBirth.toDateString() %>" name="dateOfBirth" id="doctors_DOB" class="b-datepicker form-control" placeholder="Select a date..." onchange="calculate_age('<%=data.dateOfBirth.toDateString()%>');">
+                      <i class="icon-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row"> 
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Doctors Age</label>
+                        <input type="number" id="doctorAge" name="age" value="<%- data.age %>" class="form-control" readonly>
+                      </div>  
+                    </div>                     
+                    <div class="col-sm-3">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Gender</label>
+                              <div class="option-group">
+                                <% if (data.gender != 0) { %>
+                                <select id="gender" name="gender" class="" style="width: 200px" required>
+                                  <option selected hidden diasabled><%- data.gender %></option>
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                                  <option value="transgender male">Transgender male</option>
+                                  <option value="transgender female">Transgender Female</option>
+                                  <option value="not to disclose">Not to disclose</option>
+                                </select>
+                                <% }else { %>
+                                <select id="gender" name="gender" class="" style="width: 200px" required>
+                                  <option selected hidden diasabled>Select gender...</option>
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                                  <option value="transgender male">Transgender male</option>
+                                  <option value="transgender female">Transgender Female</option>
+                                  <option value="not to disclose">Not to disclose</option>
+                                </select>
+                                <% } %>
+                              </div>
+                            </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="control-label">Doctors Region </label>
+                             <div class="option-group">
+                              <% if (data.region != null || data.region != undefined) { %>
+                              <select id="region" name="region" class="" style="width: 200px" required>
+                                <option selected hidden diasabled><%- data.region %></option>
+                                <option value="american">American</option>
+                                <option value="austrelian">Austrelian</option>
+                                <option value="indian">Indian</option>
+                                <option value="indonesian">Indonesian</option>
+                                <option value="shrilankan">Shrilankan</option>
+                                <option value="aafrican">Aafrican</option>
+                                <option value="chienese">Chienese</option>
+                              </select>
+                              <% }else { %>
+                              <select id="region" name="region" class="" style="width: 200px" required>
+                                <option selected hidden diasabled>Select region...</option>
+                                <option value="american">American</option>
+                                <option value="austrelian">Austrelian</option>
+                                <option value="indian">Indian</option>
+                                <option value="indonesian">Indonesian</option>
+                                <option value="shrilankan">Shrilankan</option>
+                                <option value="aafrican">Aafrican</option>
+                                <option value="chienese">Chienese</option>
+                              </select>
+                              <% } %>
+                            </div>
+                          </div>
+                    </div>
+                </div>  
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Education </label>
+                              <div class="append-icon">
+                                <input type="text" value="<%- data.doctor_education %>" name="doctor_education" class="form-control" placeholder="Enter Education of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Specialation </label>
+                              <div class="append-icon">
+                                <input type="text" value="<%- data.doctor_specialization %>" name="doctor_specialization" class="form-control" placeholder="Enter Specialation of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Location </label>
+                              <div class="append-icon">
+                                <input type="text" value="<%- data.doctor_location %>" name="doctor_location" class="form-control" placeholder="Enter Location of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctors Fees </label>
+                              <div class="append-icon">
+                                <input type="text" value="<%- data.doctor_fees %>" name="doctor_fees" class="form-control" placeholder="Enter Fees of Doctor.." required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Doctors Working Hours </label>
+                                <div>
+                                  <div>
+                                    <label class="col-sm-1 control-label">From:</label>
+                                    <div class="col-sm-5">
+                                      <div class="append-icon">
+                                       <input type="text" name="timeFrom" id="timeFrom" class="timepicker form-control" placeholder=" 00:00 am " required="">
+                                      </div> 
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <label class="col-sm-1 control-label">To:</label>
+                                    <div class="col-sm-5">
+                                      <div class="append-icon">
+                                        <input type="text" name="timeTo" id="timeTo" class="timepicker form-control" placeholder=" 00:00 pm" required="">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Doctors Working Days</label>
+                              <select multiple class="form-control" id="days" name="workingDays" data-placeholder="Choose one or various country...">
+                                <%   
+                                var array1 = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];      
+                                 var filteredAry = array1.filter(function(e) {
+                                  for(var i = 0; i < data.workingDays.length; i++){
+                                         return e !== data.workingDays[i]
+                                    }
+                                  })          
+                                  console.log(filteredAry);
+                                  for(var i=0; i < data.workingDays.length; i++) {        
+                                                                                   
+                                  %>
+                                  <option  selected="<%- data.workingDays[i] %>" value="<%- data.workingDays[i] %>"><%- data.workingDays[i] %></option>
+                                  <%
+                                  }
+                                  if(data.workingDays.length <= 6){
+                                  for(var i=0; i < filteredAry.length; i++) {  
+                                  var test= filteredAry.filter(function(value, index, array) {
+                                        return array.indexOf(value) === index;
+                                    })
+                                   %>
+                                  <option value="<%- filteredAry[i] %>"><%- test[i] %></option>
+                                  <% 
+                                  }
+                                  } %>
+                                  <%
+                                  if(data.workingDays.length == 0){
+                                  %>
+                                  <option value="Monday">Monday</option>
+                                  <option value="Tuesday">Tuesday</option>
+                                  <option value="Wednesday">Wednesday</option>
+                                  <option value="Thursday">Thursday</option>
+                                  <option value="Friday">Friday</option>
+                                  <option value="Saturday">Saturday</option>
+                                  <option value="Sunday">Sunday</option>
+                                  <%
+                                  }
+                                  %>
+                                </select>
+                              </div>
+                            </div> 
+                        </div>
+
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">About Doctor</label>
+                                <div class="append-icon">
+                                  <textarea rows="5" class="form-control underlined" name="about_doctor"><%- data.about_doctor %></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">Doctors Address </label>
+                                <div class="append-icon">
+                                  <textarea rows="5" class="form-control underlined" name="doctor_address"><%- data.doctor_address %></textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  
+
+                          <div class="text-center  m-t-20">
+                            <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                            <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>    
+            <%- include layouts/footer.ejs %>
+</div>
+<!-- END PAGE CONTENT -->
+<%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> <!-- >Bootstrap Date Picker -->
+<script src="../assets/global/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+<script src="../assets/global/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
+<script type="text/javascript">
+    
+  $('#doctors_DOB').datepicker
+    ({
+      //dateFormat: 'dd/mm/yy',
+      changeMonth: true,
+      changeYear: true,
+      yearRange: '1900:2150',
+      maxDate: "-1",
+      inline: true,
+
+      onSelect: function() {
+        var birthDay = document.getElementById("doctors_DOB").value;
+        var DOB = new Date(birthDay);
+        var today = new Date();
+        var age = today.getTime() - DOB.getTime();
+        age = Math.floor(age / (1000 * 60 * 60 * 24 * 365.25));
+        console.log("here is age " + age);
+        document.getElementById('doctorAge').value = age;              
+      }
+  });  
+
+  $('#myselect').on('change', function() {
+      var $sel = $(this),
+      val = $(this).val(),
+      $opts = $sel.children(),
+      prevUnselected = $sel.data('unselected');
+      console.log("unselect "+ prevUnselected);
+      console.log("val "+ val);
+      console.log("opts "+ $opts);
+      // create array of currently unselected 
+      var currUnselected = $opts.not(':selected').map(function() {
+         return this.value
+       }).get();
+      // see if previous data stored
+      if (prevUnselected) {
+          var unselected = currUnselected.reduce(function(a, curr) {
+      if ($.inArray(curr, prevUnselected) == -1) {
+          a.push(curr)
+      }
+      console.log(a);
+          return a
+      }, []);
+    // "unselected" is an array if it has length some were removed
+    if (unselected.length) {
+      alert('Unselected is ' + unselected.join(', '));
+    }
+  }
+  $sel.data('unselected', currUnselected)
+}).change();
+
+var output = '<%= data.workingHours %>';
+var time = output.split('-');
+console.log(time);
+document.getElementById('timeFrom').value = time[0]; 
+document.getElementById('timeTo').value = time[1]; 
+
+</script>
+<script src="../assets/global/plugins/select2/select2.min.js"></script> <!-- Select Inputs -->

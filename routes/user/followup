@@ -1,0 +1,112 @@
+/*
+Input parameter : UserId,primeryDiagnosisName,description,familyMemberId,physicainReviewer
+                    documents,isDraft,isAnonymous,isPrimaryDiagnosis,paymentId,paymentStatus
+
+Description: Add case when user ask for seek opinion
+
+Dated On:5th September 2017
+*/
+router.post('/getFollowUpQuesAns',function(req, res, next) {
+    var token = req.headers['accesstoken'];
+    console.log(token);
+    jwtAuth.checkAuth(token).then(function(result) {
+        // var documents = [];
+        console.log("/////" + JSON.stringify(req.body));
+        // if (req.files == undefined) {
+        //     console.log(" ok np");
+        // } else {
+        //     if (req.files.length > 0 || req.files != undefined) {
+
+        //         var originalName = req.files[0].filename;
+        //         console.log(originalName);
+        //         req.files.forEach(function(fileinfo) {
+        //             documents.push(fileinfo.filename);
+        //         })
+        //     }
+        // }
+
+        var doctorId = req.body.doctorId;
+        var userId = req.body.userId;
+        var caseId = req.body.caseId;
+        var doctorOpinionId = req.body.doctorOpinionId;
+        var followUpQues = req.body.query;
+        var followUpAns = req.body.answer;
+        // var val = math.random(99999);
+        // var num = val.toFixed(0);
+
+        var CaseQuery = new followUp({
+            'doctorId': doctorId,
+            'userId': userId,
+            'caseId': caseId,
+            'doctorOpinionId': doctorOpinionId,
+            'queries.query': followUpQues,
+            'queries.answer': followUpAns
+            // 'documents': documents,
+            // 'priceId': priceId,
+            // 'isDraft': req.body.isDraft,
+            // 'isAnonymous': req.body.isAnonymous,
+            // 'isPrimaryDiagnosis': req.body.isPrimaryDiagnosis,
+            // 'paymentId': req.body.paymentId,
+            // 'paymentStatus': req.body.paymentStatus
+        })
+        // CaseQuery.save(function(err, userCaseInfo) {
+        //     if (err) {
+        //         console.log(err);
+        //         res.json({
+        //             'success': false,
+        //             'msg': "Failed to add user case"
+        //         })
+        //     } else {
+                // var casequery = new CaseQuery({
+                //     'caseId': userCaseInfo._id,
+                //     'userId': userId
+                // });
+                CaseQuery.save(function(err, data) {
+                    if (err) {
+                        console.log(err);
+                        res.json({
+                            success: false,
+                            msg: "failed to add followUp in db"
+                        })
+                    } else {
+                        var userSession = new UserSession({
+                            'userId': userId,
+                            'apiName': "FollowUp Question Submitted in this case"
+                        });
+                        userSession.save(function(er, db) {
+                            if (er) {
+                                console.log("err while session " + er);
+                                res.json({
+                                    'success': false,
+                                    'msg': "failed to add user session data"
+                                })
+                            } else {
+                                res.json({
+                                    success: true,
+                                    msg: "Case added successfully",
+                                    data: userCase
+                                })
+                            }
+                        })
+                    }
+                }).catch(function(error) {
+                    res.json({
+                        'success': false,
+                        'msg': "Somthing went wrong while adding case in casequery"
+                    })
+                })
+            // }
+        // }).catch(function(error) {
+        //     res.json({
+        //         'success': false,
+        //         'msg': "Somthing went wrong while adding case"
+        //     })
+        // })
+    }).catch(function(error) {
+        console.log("errr" + error);
+        res.json({
+            success: false,
+            msg: "Authentication failed"
+        })
+    })
+})

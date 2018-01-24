@@ -1,0 +1,64 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Edit <strong>Primary Diagnosys </strong>Price</h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Price</a>
+                </li>
+                <li class="active">Edit Price</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-6">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Edit</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="/update_articles" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                            <input type="hidden" name="pd_id" id="pd_id" value="<%# data._id %>">
+                              <label class="control-label">Problem Title</label>
+                              <div class="append-icon">
+                                <input type="text" name="pd_title" value="<%# data["Problem title"]%>" class="form-control" placeholder="Title For Problems and Diagnosys" readonly>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Problem Price</label>
+                              <div class="append-icon">
+                                <input type="text" name="pd_price" value="" class="form-control">
+                              </div>
+                            </div>
+                            
+                          </div>
+                            
+                          
+                          
+                          </div>
+                        </div>
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+    <!-- Form Validation -->
+<script src="../assets/global/plugins/select2/select2.min.js"></script> 
+    

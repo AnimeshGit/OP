@@ -1,0 +1,67 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Edit <strong>Limits</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Limits</a>
+                </li>
+                <li class="active">Edit Limits</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Edit</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="/update_limits" method="post">
+                        <div class="row">
+
+                          <input type="hidden" name="LimitId" id="LimitId" value="<%- data._id %>">
+                         
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">caseLimit</label>
+                              <div class="append-icon">
+                                <input type="number" name="caseLimit" min="1" value="<%- data.caseLimit %>" class="form-control" placeholder="Enter caseLimit">
+                              </div>
+                            </div>
+                          
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">followLimit</label>
+                                <input type="number" name="followLimit" min="1" value="<%- data.followLimit %>" class="form-control" placeholder="Enter followLimit">
+                              <div class="append-icon">
+                              </div>
+                            </div>                           
+                          </div>
+                        
+                        </div>
+                        
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+<!-- Form Validation -->
+<script src="../assets/global/plugins/select2/select2.min.js"></script> 
+    

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="admin-themes-lab">
+    <meta name="author" content="themes-lab">
+    <link rel="shortcut icon" href="../assets/global/images/favicon.png" type="image/png">
+    <title><%- page_title %></title>
+    <link href="../assets/global/css/style.css" rel="stylesheet">
+    <link href="../assets/global/css/theme.css" rel="stylesheet">
+    <link href="../assets/global/css/ui.css" rel="stylesheet">
+    <link href="../assets/admin/layout1/css/layout.css" rel="stylesheet">
+    
+    <script src="../assets/global/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../assets/global/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+  </head>
+
+  <!-- <body class="fixed-topbar fixed-sidebar theme-sdtl color-default dashboard"> -->
+  <body class="fixed-topbar fixed-sidebar theme-sdtd color-primary dashboard">
+    <section>
+      <!-- BEGIN SIDEBAR -->
+      <div class="sidebar">
+        <div class="logopanel">
+          <h1>
+            <a href="/dashboard"></a>
+          </h1>
+        </div>
+        <div class="sidebar-inner">
+          <div class="sidebar-top">
+            
+          </div>
+          <div class="menu-title">
+            <!-- Navigation  -->
+            <div class="pull-right menu-settings">
+              
+            </div>
+          </div>
+          <ul class="nav nav-sidebar">
+            <li class="<% if(navigation=='dashboard'){%> nav-active active <%}%>"><a href="/dashboard"><i class="icon-home"></i><span>Dashboard</span></a></li>
+            
+            <li class="nav-parent<% if(navigation=='patients' || navigation=='dependents'){%> active <%}%>">
+              <a href="#"><i class="icon-puzzle"></i><span>Patients</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li class="<% if(navigation=='patients'){%> active <%}%>"><a href="/patients"> Users</a></li>
+                <li class="<% if(navigation=='dependents'){%> active <%}%>"><a href="/dependents"> Dependents</a></li>
+              </ul>
+            </li>
+
+            <li class="<% if(navigation=='doctors' || navigation=='doc_dependents'){%> active <%}%>">
+              <a href="/doctors"><i class="fa fa-user-md"></i><span>Doctors Profile</span></a>
+            </li>
+            
+            <li class="<% if(navigation=='problems' || navigation=='problems_sub_cat'){%> active <%}%>">
+              <a href="/problems"><i class="icon-screen-desktop"></i><span>Problems</span></a>             
+            </li>
+
+            <li class="<% if(navigation=='medications' || navigation=='medications_sub_cat'){%> active <%}%>">
+              <a href="/medications"><i class="icon-layers"></i><span>Medications</span></a>
+            </li>
+
+            <li class="<% if(navigation=='PrimaryDiagnosys' || navigation==''){%> active <%}%>">
+              <a href="/PrimaryDiagnosys"><i class="glyphicon glyphicon-plus-sign"></i><span>Primary Diagnosis</span></a>
+            </li>
+          
+            <li class="<% if(navigation=='blogs' || navigation=='add_blogs' || navigation=='edit_each_blog' || navigation=='view_each_blog'){%> active <%}%>">
+              <a href="/blogs"><i class="icon-note"></i><span>Blogs</span></a>
+            </li>
+            
+            <li class="<% if(navigation=='cases'||navigation=='view_each_case'){ %> active <%}%>">
+              <a href="/cases"><i class="icon-bar-chart"></i><span>Cases/Encounters </span></a>
+            </li>
+
+            <li class="<% if(navigation=='prices' || navigation=='add_prices'){%> active <%}%>">
+              <a href="/prices"><i class="icon-docs"></i><span>Pricing options</span></a>
+            </li>
+
+            <li class="<% if(navigation=='bookmarks'){%> active <%}%>">
+              <a href="/bookmarks"><i class="fa fa-bookmark-o"></i><span>Bookmarks </span></a>
+            </li>
+            
+            <li class="<% if(navigation=='usersession'){%> active <%}%>">
+              <a href="/usersession"><i class="icon-user"></i><span>User sessions </span></a>
+            </li>
+
+            <li class="<% if(navigation=='opinionplus_feedback'){%> active <%}%>">
+              <a href="/opinionplus_feedback"><i class="glyphicon glyphicon-download"></i><span>OpinionPlus Feedback</span></a>
+            </li>
+
+            <li class="<% if(navigation=='articles' || navigation=='add_articles' || navigation=='edit_each_article' || navigation=='view_each_article'){%> active <%}%>">
+              <a href="/articles"><i class="fa fa-newspaper-o"></i><span>Recommended Articles</span></a>
+            </li>
+
+            <li class="nav-parent<% if(navigation=='labs_diagnostic' || navigation=='hospitals' || navigation=='pharmacy'){%> active <%}%>">
+              <a href=""><i class="glyphicon glyphicon-registration-mark"></i><span>Registrations</span><span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li class="<%if(navigation=='hospitals'){%>active<%}%>"><a href="/hospitals"> Hospitals</a></li>
+                <li class="<%if(navigation=='pharmacy'){%>active<%}%>"><a href="/pharmacy"> Pharmacy</a></li>
+                <li class="<%if(navigation=='labs_diagnostic'){%>active<%}%>"><a href="/labs_diagnostic"> Lab/Diagnostic</a></li>
+              </ul>
+            </li>
+ 
+            <li class="<% if(navigation=='limitations'){%> active <%}%>">
+              <a href="/limitations"><i class="fa fa-newspaper-o"></i><span>Limitations</span></a>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+      <!-- END SIDEBAR -->
+      <div class="main-content">
+        <!-- BEGIN TOPBAR -->
+        <div class="topbar">
+          <div class="header-left">
+            <div class="topnav">
+              <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
+            </div>
+          </div>
+          <div class="header-right">
+            <ul class="header-menu nav navbar-nav">
+              <li class="dropdown" id="user-header">
+                <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <span class="username">Hi, <%- adminFirstName%></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/admin_profile"><i class="icon-user"></i><span>My Profile</span></a>
+                  </li>
+                  <li>
+                    <a href="/admin_logout"><i class="icon-logout"></i><span>Logout</span></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- header-right -->
+        </div>
+        <!-- END TOPBAR -->

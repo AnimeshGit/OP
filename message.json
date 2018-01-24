@@ -1,0 +1,40 @@
+{
+	"congo":"Congratulations!!!!!",
+
+    "super_admin" : "aniket.meshram@eeshana.com",
+	
+	"signup_success" : {
+		"signup_title":"OpinionPlus Registration",
+		"signup_body":"You have successfully registered for OpinionPlus account."
+	},
+	"login_success" : {
+		"login_title":"OpinionPlus Login",
+		"login_body":"You have successfully login for OpinionPlus account."
+	},
+	"case_update_success" : {
+		"case_update_title":"Opinion requested successfully",
+		"case_update_body":"Thank you for choosing OpinionPlus for your healthcare needs. You have successfully requested for an opinion. Please refer the case no :"
+	},
+	"op_rcv":{
+		"rcv_op_title":"Opinion Received",
+		"rcv_op_body":"Thank you for choosing OpinionPlus for your healthcare needs. Please login to your account, you have received an opinion for your case."
+	},
+	"op_given":{
+		"doc_op_title":"Opinion Delivered",
+		"doc_op_body":"Hello!! You recently give your opinion on case no."
+	},
+	"follow_ques_mail":{
+		"follow_ques_title":"Followup question received",
+		"follow_ques_title_submit":"Followup question submitted",
+		"follow_ques_body":"Thank you for providing your opinion using OpinionPlus. Please login to your account, you have received a followup question on case no.",
+		"follow_ques_body_submit":"Thank you for choosing OpinionPlus for your healthcare needs. Please login to your account, you have submitted a followup question on case no."
+	},
+	"follow_ans_mail":{
+		"follow_ans_title":"Followup response received",
+		"follow_ans_body":"Thank you for choosing OpinionPlus for your healthcare needs. Please login to your account, you recently received a followup response on case no."
+	},
+	"case_feedback":{
+		"case_feedback_title":"OpinionPlus Feedback",
+		"case_feedback_body":"Thank you for choosing OpinionPlus for your healthcare needs. We are glad you choose to give a feedback which is valuable to provide a better healthcare."
+	}
+}

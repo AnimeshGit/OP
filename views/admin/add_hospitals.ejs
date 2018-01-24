@@ -1,0 +1,128 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Add <strong>Hospital</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Hospital</a>
+                </li>
+                <li class="active">Add Hospital</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Fill</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="insert_hospitals" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            
+                            <div class="form-group">
+                              <label class="control-label">Hospital Name</label>
+                              <div class="append-icon">
+                                <input type="text" name="hospital_name" class="form-control" placeholder="Enter The Name For Hospital" required/>
+                              </div>
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                              <label class="control-label">Hospital logo</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">Choose File</span>
+                                  <input type="file" accept="image/*" class="custom-file" name="hospital_logo" id="avatar" onchange="document.getElementById('uploader').value = this.value;">
+                                  <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly/>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Hospital Specialities</label>
+                              <div class="append-icon">
+                                <input type="text" name="hospital_specialities" class="form-control" placeholder="Enter specialities of the  Hospital Here.." required="">
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Hospital Email</label>
+                              <div class="append-icon">
+                                <input type="email" name="hospital_email" class="form-control" placeholder="Enter email of the Hospital Here.." required="">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">Hospital Phone</label>
+                              <div class="append-icon">
+                                <input type="text" data-mask="(999) 999-9999" name="hospital_phone" class="form-control" placeholder="Enter phone number of the Hospital Here.." required="">
+                              </div>
+                            </div>
+                            
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">About Hospital</label>
+                              <div class="append-icon">
+                                <textarea rows="5" class="form-control underlined" name="about_hospital" id="about_hospital" ></textarea>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Hospital Address</label>
+                              <div class="append-icon">
+                                <textarea rows="6" class="form-control underlined" name="hospital_address" id="hospital_address" ></textarea>
+                              </div>
+                            </div>
+                            <!--  -->
+                            <div class="form-group">
+                              <label class="control-label">Hospital Timing</label>
+                              <div>
+                                <div>
+                                  <label class="col-sm-1 control-label">From</label>
+                                  <div class="col-sm-5">
+                                   <div class="append-icon">
+                                     <input type="text" name="hospital_timing1" class="timepicker form-control" placeholder=" 00:00 am " required="">
+                                    </div> 
+                                  </div>
+                                </div>
+                                <div>
+                                  <label class="col-sm-1 control-label">To</label>
+                                  <div class="col-sm-5">
+                                    <div class="append-icon">
+                                    <input type="text" name="hospital_timing2"  class="timepicker form-control" placeholder=" 00:00 pm" required="">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--  -->
+                            
+                          </div>
+                        </div>
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+<!-- Form Validation -->
+<script src="../assets/global/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> 
+<!-- Time Picker -->
+<style type='text/css'  href='/stylesheets/timepicki.css'></style>
+
+    

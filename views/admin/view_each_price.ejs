@@ -1,0 +1,87 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2> <strong>Prices</strong> Details</h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Prices</a>
+                </li>
+                <li class="active"> Prices Details</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-6">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Particular Price Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <!-- <form role="form" class="form-validation" action="article_update" method="post" enctype="multipart/form-data"> -->
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Price Name</label>
+                              <div>
+                              <%# use = instead of # %>
+                                <%- data.priceName %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Price Description</label>
+                              <div class="append-icon">
+                                <%- data.priceDescription %>
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="control-label">Price</label>
+                              <div class="append-icon">
+                                <%- data.price %>  
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">Price Type</label>
+                              <div class="append-icon">
+                                <%if (data.type== 0){%>
+                                  Only Opinion
+                                <%}else if(data.type== 1){%>
+                                  Opinion with 1 follow up
+                                <%}else{%>
+                                  Follow up only
+                                <%}%>
+                              </div>
+                            </div>
+
+                          </div>
+                            
+                          <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Articles Image</label>
+                              <div>
+                                <img src="<%# imageURL %>blog_images/<%# data[0].blog_image %>" width="500" height="400">
+                              </div>
+                            </div>
+                          </div> -->
+                        </div>
+                        <!-- <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+     </body>
+</html>

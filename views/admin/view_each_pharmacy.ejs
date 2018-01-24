@@ -1,0 +1,101 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>View <strong>Pharmacy</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Pharmacy</a>
+                </li>
+                <li class="active">View Pharmacy</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Perticular Pharmacy Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="blogs_update" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Name</label>
+                              <div>
+                                <%- data.pharmacy_name %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Email</label>
+                              <div class="append-icon">
+                                <%- data.pharmacy_email %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Timing</label>
+                              <div class="append-icon">
+                                <%- data.pharmacy_timing %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Phone</label>
+                              <div class="append-icon">
+                                <%- data.pharmacy_phone %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Tagline</label>
+                              <div class="append-icon">
+                                <%- data.pharmacy_tagline %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Address</label>
+                              <div class="append-icon">
+                                <%- data.pharmacy_address %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">About Pharmacy </label>
+                              <div class="append-icon">
+                                <%- data.about_pharmacy %>  
+                              </div>
+                            </div>
+                            
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Pharmacy Logo</label>
+                              <div>
+                                <% if(data.pharmacy_logo==''){ %>
+                            <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>pharmacy_logos/default.png" height="400" width="400">
+                                <% }else{ %>
+                            <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>pharmacy_logos/<%- data.pharmacy_logo %>" height="400" width="400">
+                                <% }%>
+                                <!-- <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>pharmacy_logos/<%- data.pharmacy_logo %>" width="400" height="400"> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+     </body>
+</html>

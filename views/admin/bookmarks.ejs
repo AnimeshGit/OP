@@ -1,0 +1,308 @@
+ <%- include layouts/header.ejs %>         
+    <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <!-- counter  start-->
+        <h3 class="m-t-30 m-b-10"><strong>Counters</strong></h3>
+          <p>Bookmarks Counters</p>
+          <div class="row m-t-10">
+            <div class="col-xlg-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="fa fa-umbrella bg-green"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="52000"><%= data.total %></p>
+                      <p class="text">All</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xlg-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="fa fa-bug bg-blue"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="575" data-suffix="k"><%= data.problem %></p>
+                      <p class="text">Problems</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xlg-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="fa fa-fire-extinguisher bg-red"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="463" data-suffix="k"><%= data.medication %></p>
+                      <p class="text">Medications</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xlg-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="icon-microphone bg-purple"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="1210">0</p>
+                      <p class="text">Near Me</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xlg-2 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="panel">
+                <div class="panel-content widget-info">
+                  <div class="row">
+                    <div class="left">
+                      <i class="icon-microphone bg-purple"></i>
+                    </div>
+                    <div class="right">
+                      <p class="number countup" data-from="0" data-to="1210"><%= data.blog %></p>
+                      <p class="text">Blogs</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- counter end -->
+            <h2><strong>Bookmarks</strong></h2>
+              <div class="col-md-12">
+                <div class="panel">
+                  <div class="panel-content">
+                    <ul class="nav nav-tabs nav-primary">
+                      <li id="case_tabs" class="active"><a href="#tab2_1" data-toggle="tab" class="active"><i class=""></i> ALL</a></li>
+                      <li id="case_tabs"><a href="#tab2_2" data-toggle="tab"><i class=""></i> PROBLEMS</a></li>
+                      <li id="case_tabs"><a href="#tab2_3" data-toggle="tab"><i class=""></i> MEDICATIONS</a></li>
+                      <!-- <li id="case_tabs"><a href="#tab2_4" data-toggle="tab"><i class=""></i> NEAR ME</a></li> -->
+                      <li id="case_tabs"><a href="#tab2_4" data-toggle="tab"><i class=""></i> BLOGS</a></li>
+                    </ul>
+                    <div class="tab-content">
+                      <!-- tab1 -->
+                        <div class="tab-pane fade active in" id="tab2_1">
+                          <div class="panel-content pagination2 table-responsive">
+                          <table class="table dataTable" id="table2">
+                              <thead>
+                                <tr>
+                                  <th>Sr.No</th>
+                                  <th>Category</th>
+                                 <!--  <th>Subcategory</th> -->
+                                  <th>Bookmark Name</th>
+                                  <th>User</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% 
+                                  if(data.bookmarks.length>0){ 
+                                  var j =1;
+                                %>                   
+                                <% for(var i =0 ;i<data.bookmarks.length;i++){                        
+                                %>
+                                 <tr>
+                                  <td><%=j%></td>
+                                  <td><%=data.bookmarks[i].subTitle%></td>
+                                  <!-- <td><%=data.bookmarks[i].name%></td> -->
+                                  <td><%=data.bookmarks[i].bookmarkName%></td>
+
+                                  <%
+                                  if(data.bookmarks[i].userId != null || data.bookmarks[i].userId != undefined ){
+                                  %>
+                                   <td><%=data.bookmarks[i].userId.fullname%></td>
+                                   <%
+                                  }else{
+                                  %>
+                                  <td> </td>
+                                  <%
+                                  }
+                                 %>
+                                </tr>
+                                 <% j++;} }%>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      
+                        <!-- tab2 -->
+                        <div class="tab-pane fade" id="tab2_2">
+                          <div class="panel-content pagination2 table-responsive">
+                          <table class="table dataTable" id="table2">
+                              <thead>
+                                <tr>
+                                  <th>Sr.No</th>
+                                  <th>Problem Category</th>
+                                 <!--  <th>Problem Subcategory</th> -->
+                                  <th>Problem</th>
+                                  <th>User</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% 
+                                  if(data.problemData.length>0){ 
+                                  var j =1;
+                                %>                   
+                                <% for(var i =0 ;i<data.problemData.length;i++){                        
+                                %>
+                                 <tr>
+                                  <td><%=j%></td>
+                                  <td><%=data.problemData[i].subTitle%></td>
+                                 <!--  <td><%=data.problemData[i].name%></td> -->
+                                  <td><%=data.problemData[i].bookmarkName%></td>
+                                  <%
+                                  if(data.problemData[i].userId != null || data.problemData[i].userId != undefined ){
+                                  %>
+                                  <td><%=data.problemData[i].userId.fullname%></td>
+                                   <%
+                                  }else{
+                                  %>
+                                  <td> </td>
+                                  <%
+                                  }
+                                 %>
+                                </tr>
+                                 <% j++;} }%>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                                              
+                                              <!-- tab3 -->
+                        <div class="tab-pane fade" id="tab2_3">
+                          <div class="panel-content pagination2 table-responsive">
+                          <table class="table dataTable" id="table2">
+                              <thead>
+                                <tr>
+                                  <th>Sr.No</th>
+                                  <th>Medication Category</th>
+                                  <!-- <th>Medication Subcategory</th> -->
+                                  <th>Medication</th>
+                                  <th>User</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% 
+                                  if(data.medicationData.length>0){ 
+                                  var j =1;
+                                %>                   
+                                <% for(var i =0 ;i<data.medicationData.length;i++){                        
+                                %>
+                                 <tr>
+                                  <td><%=j%></td>
+                                  <td><%=data.medicationData[i].subTitle%></td>
+                                  <!-- <td><%=data.medicationData[i].name%></td> -->
+                                  <td><%=data.medicationData[i].bookmarkName%></td>
+                                  <%
+                                  if(data.medicationData[i].userId != null || data.medicationData[i].userId != undefined ){
+                                  %>
+                                  <td><%=data.medicationData[i].userId.fullname%></td>
+                                  <%
+                                  }else{
+                                  %>
+                                  <td> </td>
+                                  <%
+                                  }
+                                 %>
+
+                                </tr>
+                                 <% j++;} }%>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                                              <!-- tab4 -->
+                        <div class="tab-pane fade" id="tab2_4">
+                          <div class="panel-content pagination2 table-responsive">
+                           <table class="table dataTable" id="table2">
+                              <thead>
+                                <tr>
+                                  <th>Sr.No</th>
+                                  <th>Blog Category</th>
+                                  <!-- <th>Blog Subcategory</th> -->
+                                  <th>Blog</th>
+                                  <th>User</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% 
+                                  if(data.blogData.length>0){ 
+                                  var j =1;
+                                %>                   
+                                <% for(var i =0 ;i<data.blogData.length;i++){                        
+                                %>
+                                 <tr>
+                                  <td><%=j%></td>
+                                  <td><%=data.blogData[i].subTitle%></td>
+                                 <!--  <td><%=data.blogData[i].name%></td> -->
+                                  <td><%=data.blogData[i].bookmarkName%></td>
+
+                                  <%
+                                  if(data.blogData[i].userId != null || data.blogData[i].userId != undefined ){
+                                  %>
+                                  <td><%=data.blogData[i].userId.fullname%></td>
+                                  <%
+                                  }else{
+                                  %>
+                                  <td> </td>
+                                  <%
+                                  }
+                                 %>
+                                  
+                                </tr>
+                                 <% j++;} }%>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>            
+
+                      <!-- tabs end -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+          <!-- include footer -->
+          <%- include layouts/footer.ejs %> 
+        </div>
+        <!-- END PAGE CONTENT -->
+      </div>
+      <!-- END MAIN CONTENT -->
+<%- include layouts/js.ejs %> 
+
+<style type="text/css">
+  #case_tabs {
+    width: 25%;
+    position: relative;
+    text-align: center;
+}
+/*
+.t1 {
+    width: 915px;
+    height: 100px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #888888;
+}
+.user_images{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-top: 12%;
+  margin-left: 5%;
+}*/
+</style>
+
+<script src="../assets/global/plugins/countup/countUp.min.js"></script> <!-- Animated Counter Number -->

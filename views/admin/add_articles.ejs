@@ -1,0 +1,104 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Add <strong>Articles</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Articles</a>
+                </li>
+                <li class="active">Add Articles</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Fill</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="insert_articles" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Articles Title</label>
+                              <div class="append-icon">
+                                <input type="text" name="article_title" class="form-control" placeholder="Enter Title For Article" required>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Articles Image</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">Choose File</span>
+                                  <input type="file" accept="image/*" class="custom-file" name="article_image" id="avatar" onchange="document.getElementById('uploader').value = this.value;">
+                                  <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Article Author</label>
+                              <div class="append-icon">
+                                <input type="text" name="article_author" value="" class="form-control" placeholder="" >
+                                <%# globalConsTant.AdminSession.adminFirstName %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">State</label>
+                                <div class="option-group">
+                                  <select id="state" name="state" class="">
+                                    <%
+                                      for(var i=0; i < data.length; i++) { 
+                                    %>
+                                    <option value="<%= data[i].name%>"><%= data[i].name%></option>
+
+                                    <%}%>
+                                  </select>
+                                </div>
+                            </div>
+                            
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Articles Content</label>
+                              <div class="append-icon">
+                                <textarea rows="10" class="form-control underlined" name="article_content" id="Articles_content" ></textarea></div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Article Types</label>
+                              <div class="option-group">
+                                <select id="types" name="types" class="" required>
+                                  <option value="Disease Alert">Disease Alert</option>
+                                  <option value="Medication Alert">Medication Alert</option>
+                                  <option value="Infection Alert">Infection Alert</option>
+                                  <option value="Announcements">Announcements</option>
+                                </select>
+                              </div>
+                            </div>
+                          
+                          </div>
+                        </div>
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+<!-- Form Validation -->
+<script src="../assets/global/plugins/select2/select2.min.js"></script> 
+
+    

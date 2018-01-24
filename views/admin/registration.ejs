@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<title>OpinionPlus</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+		<link rel="icon" type="text/css" href="<%= base_url %>email_assets/images/favicon.png">
+		<style type="text/css">
+		*{font-family: 'Open Sans', sans-serif;}
+		header{background-color:#00a8c5;}
+		.menu-list{list-style-type: none;padding-left: 0px;float: right;padding: 6px 12px;}
+		.menu-list li,.contact-section li{display: inline-block;}
+		.menu-list li a{font-size: 16px;color: #fff !important;text-decoration: none;display: block;padding:5px 12px;}
+		.blue-btn{background: rgb(0,168,198); 
+		background: -webkit-linear-gradient(left, rgba(0,168,198,1) 0%, rgba(5,124,155,1) 40%, rgba(13,66,98,1) 100%);
+		background: -o-linear-gradient(left, rgba(0,168,198,1) 0%, rgba(5,124,155,1) 40%, rgba(13,66,98,1) 100%);
+		background: linear-gradient(to right, rgba(0,168,198,1) 0%, rgba(5,124,155,1) 40%, rgba(13,66,98,1) 100%);   
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a8c6', endColorstr='#0d4262',GradientType=1 ); 
+		padding: 10px;color: #fff;font-weight: 500;margin:0px auto;font-size:17px;display: block;text-transform: uppercase;width: 300px; text-align: center; border-radius: 25px;text-decoration: none;}
+		.blue-border{background-color:#00a8c5;width: 100%;height: 3px;margin: 60px 0px;}
+		.contact-section{list-style-type: none;padding-left: 0px;text-align: center;}
+		.contact-section li{margin-right: 10px;}
+		.contact-section li img {height: 50px;transition: all 0.2s;}
+		.download-icons{list-style-type: none;}
+		.download-icons li{display: inline-block;margin-left: 20px;}
+		</style>
+	</head>
+	<body style="margin: 0px auto;">
+		<div class="main-div" style="width: 1024px;height: auto;float: left;">
+		<header style="height:auto;padding:0px;float: left;width: 100%;">
+			<div style="width: 40%;float: left;"><img src="<%= base_url %>email_assets/images/logo.png" height="50px" style="margin: 15px 0px 15px 20px;"></div>
+			<div style="width: 60%;float: left;">
+				<ul class="menu-list">
+					<li><a href="http://www.opinionplus.com/">Go to website</a></li>
+					<li><a href="http://www.opinionplus.com/#contact">Contact</a></li>
+				</ul>
+			</div>
+		</header>
+		<div style="width: 100%;height:auto;float: left;background-color: #f5f6f7;" >
+			<div style="width: 750px;margin-left:106px;float: left;background-color: #fff;height: auto;padding: 10px 30px;box-shadow: 1px 1px 8px 0px #8b8b8b;position: relative;">
+				<h3 style="color: #00a8c5;font-size: 18px;font-weight: 600;">Hello, <span> <%= first_name %> </span></h3>
+				<p style="color: #7c7c7c;font-weight: 500;line-height: 27px;">Your OpinionPlus account has been activated. Use your email or phone number and password to log in and get started. Start getting the Best Medical Opinion, Anywhere.</p>
+
+				<!-- <a href="#" class="blue-btn" style="margin-top: 30px;margin-bottom: 30px;">log in to your account</a> -->
+
+				<!-- <a href="<%= base_url %>/<%= id %>">Click here..</a><p>to confirm your email</p> -->
+
+				<p style="color: #7c7c7c;font-weight: 500;line-height: 27px;">Because your health deserves the best opinion.</p>
+				<p style="color: #7c7c7c;font-weight: 500;line-height: 27px;">The OpinionPlus Team</p>
+				<div class="blue-border"></div>
+				<p style="color: #7c7c7c;font-weight: 500;line-height: 27px;text-align: center;">Get in touch if you have any questions or comments.</p>
+				<p style="color: #7c7c7c;font-weight: 500;line-height: 27px;text-align: center;">Feel free to contact us 24/7. We are here to help.</p>
+				<p style="text-align: center;"><a href="mailto:contact@opinionplus.com" style="color: #00a8c5;font-size: 18px;font-weight: 600;text-decoration: none;">contact@opinionplus.com</a></p>
+		</div>
+	    </div>
+		<div style="width: 100%;height: auto;float: left;background-color: #00a8c5;">
+			<div style="width: 50%;float: left;height: auto;padding: 20px 20px 20px 100px;">
+				<h2 style="color: #fff;font-weight: 600;font-size: 24px;margin-bottom: 35px;">What can you do with OpinionPlus?</h2>
+
+				<table>
+					<tr>
+						<td style="vertical-align: baseline;">
+							<img height="30px" src="<%= base_url %>email_assets/images/medical.png" style="vertical-align: middle;padding-top: 10px;">
+						</td>
+						<td>
+							<h3 style="color: #fff;font-weight: 400;line-height: 27px;font-size: 17px;margin-left: 20px;"> Access clinical content, read and encourage your family members to read about various different medical conditions.</h3>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align: baseline;">
+							<img height="30px" src="<%= base_url %>email_assets/images/test_results.png" style="vertical-align: middle;padding-top: 10px;">
+						</td>
+						<td>
+							<h3 style="color: #fff;font-weight: 400;line-height: 27px;font-size: 17px;margin-left: 20px;"> Seek an opinion by providing current medical information such as past history, current medications and relevant test results.</h3>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align: baseline;">
+							<img height="30px" src="<%= base_url %>email_assets/images/treatment.png" style="vertical-align: middle;padding-top: 10px;">
+						</td>
+						<td>
+							<h3 style="color: #fff;font-weight: 400;line-height: 27px;font-size: 17px;margin-left: 20px;"> After reviewing the patient's information, a highly skilled physician will recommend, when necessary, further evaluations or visits to other specialists and will provide further opinion on the treatment.</h3>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+								<ul class="download-icons">
+								<li><a href="https://itunes.apple.com/us/app/opinionplus/id1296127874?ls=1&mt=8"><img src="<%= base_url %>email_assets/images/app_store_button.png" height="50px"></a></li>
+								<li><a href="https://play.google.com/store/apps/details?id=com.opinion.plus&hl=en"><img src="<%= base_url %>email_assets/images/google_play_button.png" height="50px"></a></li>
+							</ul>
+						</td>
+					</tr>					
+				</table>
+		</div>
+		<div style="width:30%;float: left;height: auto;">
+			<img src="<%= base_url %>email_assets/images/iphone.png" width="100%" style="margin-bottom: -90px;position: relative;margin-top: 40px;">
+		</div>
+	</div>
+	<div style="width: 100%;height: auto;float: left;background-color: #f5f6f7;">
+		<div class="blue-border"></div>
+		<p style="font-size: 18px;color: #7c7c7c;font-weight: 400;text-align: center;line-height: 27px;">You are receving this newsletter because <br>you subscribde to our mailing list.</p>
+
+		<p style="text-align: center;font-size: 18px;color: #7c7c7c;font-weight: 300;"><a href="#" style="color: #0d4161;
+    font-weight: 600;text-decoration: none;">Unsubscribe |</a><a href="http://www.opinionplus.com/" style="color: #0d4161;
+    font-weight: 600;text-decoration: none;"> Visit opinionplus.com</a></p>
+
+		<ul class="contact-section">
+			<li><a href="#"><img src="<%= base_url %>email_assets/images/facebook.png"></a></li>
+			<li><a href="#"><img src="<%= base_url %>email_assets/images/twitter.png"></a></li>
+			<li><a href="#"><img src="<%= base_url %>email_assets/images/google_plus.png"></a></li>
+			<li><a href="#"><img src="<%= base_url %>email_assets/images/instagram.png"></a></li>
+		</ul>
+
+	</div>
+
+	<footer style="height: auto;padding:0px;float: left;width: 100%;background-color: #0d4161;padding:10px;color: #ccc;">
+		<div style="width: 40%;float: left;"><img src="<%= base_url %>email_assets/images/footer_logo.png" height="50px" style="margin: 10px 0px 0px 10px"></div>
+		<div style="width: 60%;float: left;">
+			<p style="text-align: right;color: #fff;font-size: 16px;padding-right: 20px;">Copyright © 2017 Opinion. All Right Reserved</p>
+		</div>
+	</footer>
+</div>
+	</body>
+</html>

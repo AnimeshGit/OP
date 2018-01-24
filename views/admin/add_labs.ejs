@@ -1,0 +1,230 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>Add <strong>Laboratories</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Laboratories</a>
+                </li>
+                <li class="active">Add Laboratories</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>Fill</strong> Necessary Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" action="insert_labs" method="post" enctype="multipart/form-data">
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Name</label>
+                              <div class="append-icon">
+                                <input type="text" name="lab_name" class="form-control" placeholder="Enter Name of Laboratory" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Headline</label>
+                              <div class="append-icon">
+                                <input type="text" name="lab_headline" class="form-control" placeholder="Enter the Headine for laboratory" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Logo</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">Choose File</span>
+                                  <input type="file" accept="image/*" class="custom-file" name="lab_logo" id="avatar" onchange="document.getElementById('uploader').value = this.value;">
+                                  <input type="text" class="form-control" id="uploader" placeholder="no file selected" readonly="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Timing</label>
+                              <div>
+                                <div>
+                                  <label class="col-sm-1 control-label">From</label>
+                                  <div class="col-sm-5">
+                                   <div class="append-icon">
+                                     <input type="text" name="laboratory_timing1" class="timepicker form-control" placeholder=" 00:00 am " required="">
+                                    </div> 
+                                  </div>
+                                </div>
+                                <div>
+                                  <label class="col-sm-1 control-label">To</label>
+                                  <div class="col-sm-5">
+                                    <div class="append-icon">
+                                    <input type="text" name="laboratory_timing2"  class="timepicker form-control" placeholder=" 00:00 pm" required="">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                              <label class="control-label">Laboratory Timing</label>
+                              <div class="append-icon">
+                                <input type="text" name="laboratory_timing" class="form-control" placeholder="Monday-Friday. 09:00 am to 05:00 pm" required="">
+                              </div>
+                            </div> -->
+                          </div>
+                          
+
+                          <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Images</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">Choose File</span>
+                                  <input type="file" accept="image/*" multiple="multiple" class="custom-file" name="lab_image" id="avatar1" onchange="document.getElementById('uploader1').value = this.value;">
+                                  <input type="text" class="form-control" id="uploader1" placeholder="no file selected" readonly="">
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Address</label>
+                              <div class="append-icon">
+                                <textarea rows="7" class="form-control underlined" name="lab_address" id="lab_address"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">About Laboratory </label>
+                              <div class="append-icon">
+                                <textarea rows="7" class="form-control underlined" name="about_lab" id="about_lab"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Email</label>
+                              <div class="append-icon">
+                                <input type="email" name="lab_email" class="form-control" placeholder="Enter email of the Laboratory " required="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Laboratory Phone</label>
+                              <div class="append-icon">
+                                <input type="text" data-mask="(999) 999-9999" name="lab_phone" class="form-control" placeholder="Enter phone number of the Laboratory" required="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <span id="main_test">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <label class="control-label">Test Offered</label>
+                                <div class="option-group">
+                                  <select id="test" name="test" class="" >
+                                    <%
+                                    var arr = [];
+                                      for(var i=0; i < data.length; i++) {
+
+                                    %>
+                                    <option value="<%= data[i]._id %>"><%= data[i].name%></option>
+                                    <%
+                                    arr.push(data[i].name);
+                                  }%>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label class="control-label">Prevailing Price</label>
+                                <div class="append-icon">
+                                  <input type="number" name="pre_price" min="0" id="pre_price1" class="form-control" placeholder="Enter the price for respective test offered...." >
+                                  
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </span>
+                        
+                        <span id="clone_test"></span>
+
+                        <div class="row">
+                          <div class="col-md-offset-10">
+                            <input type="hidden" name="ivalue" id="ivalue" value="0">
+                            
+                            <button type="button" id="add_new_test" class="btn btn-embossed btn-primary">ADD NEW TEST</button>
+                          </div>
+                        </div>
+                            
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary">Submit</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">Cancel</button>
+                        </div>
+                      
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+<script src="../assets/global/plugins/jquery-validation/jquery.validate.js"></script> 
+<!-- Form Validation -->
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    var test1 = document.getElementById('test').value;
+    console.log(test1);
+    var price1 = document.getElementById('pre_price1').value;
+    console.log(price1);
+
+      var i=2;
+      $("#add_new_test").click(function(){
+
+        var html='<span class="main_test"><div class="row"><div class="col-sm-6"><label class="control-label">Test Offered'+(i-1)+'</label><div class="option-group"><select id="test'+i+'" name="test'+(i-1)+'" class="" required><% for(var i=0; i < data.length; i++) { %><option value="<%= data[i]._id %>"><%= data[i].name%></option><%}%></select></div></div><div class="col-sm-6"><div class="form-group"><label class="control-label">Prevailing Price'+(i-1)+'</label><div class="append-icon"><input type="number" name="pre_price'+(i-1)+'" id="pre_price'+i+'" min="0" class="form-control" placeholder="Enter the price for respective test offered...." required></div></div></div></div></span>';
+
+        var pre_price=$("#pre_price"+(i-1)).val();
+
+        if (pre_price!='') {
+            $("#clone_test").append(html);
+          document.getElementById('ivalue').value = i-1;
+            i++;
+
+        }
+
+      });
+  });
+  
+</script> 
+<script src="../assets/global/plugins/select2/select2.min.js"></script>
+<script src="../assets/global/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> 

@@ -1,0 +1,181 @@
+<%- include layouts/header.ejs %>
+     <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>View <strong>Doctor</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">             
+                <li><a href="#">Doctor</a>
+                </li>
+                <li class="active">View Doctor</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-md-12">
+              <div class="panel panel-default no-bd">
+                <div class="panel-header bg-dark">
+                  <h3 class="panel-title"><strong>View</strong> Particular Doctor's Details</h3>
+                </div>
+                <div class="panel-body bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Name</label>
+                              <div>
+                                <%- data.fullname %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Email</label>
+                              <div class="append-icon">
+                                <%- data.email %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Age</label>
+                              <div class="append-icon">
+                                <%- data.age %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Phone Number</label>
+                              <div class="append-icon">
+                                <%- data.phoneNumber %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's DateOfBirth</label>
+                              <div class="append-icon">
+                              <% if(data.dateOfBirth){%>  <%- data.dateOfBirth.toDateString() %>  <%}%>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Education </label>
+                              <div class="append-icon">
+                                <%- data.doctor_education %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Location</label>
+                              <div class="append-icon">
+                                <%- data.doctor_location %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Gender</label>
+                              <div class="append-icon">
+                                <%- data.gender %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Fees</label>
+                              <div class="append-icon">
+                                <%- data.doctor_fees %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Region</label>
+                              <div class="append-icon">
+                                <%- data.region %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Working Days</label>
+                              <div class="append-icon">
+                                <%- data.workingDays %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Working Hours</label>
+                              <div class="append-icon">
+                                <%- data.workingHours %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Specialisation</label>
+                              <div class="append-icon">
+                                <%- data.doctor_specialization %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's NPI Number</label>
+                              <div class="append-icon">
+                                <%- data.npi_number %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's License Number</label>
+                              <div class="append-icon">
+                                <%- data.license_number %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Total Practice Years </label>
+                              <div class="append-icon">
+                                <%- data.total_practice_years %>  
+                              </div>
+                            </div>
+                            
+                          </div>
+                            
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Photo</label>
+                              <div>
+                                <% if(data.photo==''){ %>
+                                <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>users/default.png" height="400" width="400">
+                                <% }else{ %>
+                                <img src="<%- globalConsTant.baseUrl + globalConsTant.imageUrl %>users/<%- data.photo %>" height="400" width="400">
+                                <%}%>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">About Doctor</label>
+                              <div class="append-icon">
+                                <%- data.about_doctor %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Address</label>
+                              <div class="append-icon">
+                                <%- data.address %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Medical Board Certification </label>
+                              <div class="append-icon">
+                                <%- data.m_b_certification %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Work History </label>
+                              <div class="append-icon">
+                                <%- data.work_history %>  
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label">Doctor's Awards Accolades </label>
+                              <div class="append-icon">
+                                <%- data.awards_accolades %>  
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      <%- include layouts/js.ejs %>
+     </body>
+</html>

@@ -1,0 +1,81 @@
+
+      <%- include layouts/header.ejs %>
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+          <div class="header">
+            <h2>All <strong>Feedbacks</strong></h2>
+            <div class="breadcrumb-wrapper">
+              <ol class="breadcrumb">
+                <li><a href="#">Cases</a>
+                </li>
+                <li class="active"><a href="#">View</a>
+                </li>
+              </ol>
+            </div>
+          </div> 
+          <!--  -->
+          <div class="row">
+              <div class="col-md-6">
+                  <a href="add_articles">
+                    <!-- <button type="button" class="btn btn-primary">Add New</button> -->
+                  </a>
+              </div>
+          </div>
+          <!--  -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="panel">
+
+                <div class="panel-header ">
+                  <h3><i class="fa fa-table"></i> <strong>Opinionplus </strong> feedbacks</h3>
+                </div>
+
+                <div class="panel-content pagination2 table-responsive">
+                  <table class="table dataTable" id="table2">
+                    <thead>
+                      <tr>
+                        <th class="no_sort" tabindex="0" rowspan="1" colspan="1" style="width: 42px;"></th>
+                        <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" style="width: 100px;">
+                          Sr No
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 250px;text-align:center;">
+                          Patient Name 
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 250px;text-align:center;">
+                          Rating
+                        </th>
+                        <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 250px;text-align:center;">
+                          Date 
+                        </th>
+                     
+                      </tr>
+                    </thead>
+                    
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                     <% for(var i=0;i<data.length;i++)
+                     {
+                      %>
+                      <tr class="gradeA odd">
+                        <td class="center "></td>
+                        <td class=" sorting_1"><%-i+1 %></td>
+                        <td class=" " style="text-align:center;"><% if(data[i].user_id){ %><%- data[i].user_id.fullname %> <% } %></td>
+                        <td class=" " style="text-align:center;"><%-data[i].rate_to_recommend_app %>/5</td>
+                        <td class=" " style="text-align:center;"><%-data[i].createdAt %></td>
+                      </tr>
+                    <% } %>
+                    </tbody>
+                  </table>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <%- include layouts/footer.ejs %>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </div>
+      <!-- END MAIN CONTENT -->
+
+      <%- include layouts/js.ejs %>
+    </body>
+</html>
